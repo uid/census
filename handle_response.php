@@ -28,11 +28,11 @@ if( isset($_REQUEST['requestId']) ) {
 		  		"success"=>false
 			);
 	  	else {    
-		    $json = array(
+		    $data = array(
 			 	"success"=>true
 			);
 	  }
-	
+		echo $_GET['callback'] . '('.json_encode($data).')';				
 	}
 }
 ?>
