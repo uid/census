@@ -23,7 +23,7 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 
 	// If the DB connection was made correctly...
 	if($dbh) {
-		$sth = $dbh->prepare ("SELECT tasks.id,task, workerid,hitid,taskid FROM tasks LEFT OUT JOIN requests ON tasks.id=taskid WHERE xxxx ORDER BY RAND()");
+		$sth = $dbh->prepare ("SELECT tasks.id,task, workerid,hitid,taskid FROM tasks LEFT OUT JOIN requests ON tasks.id=taskid WHERE xxx ORDER BY RAND()");
 		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
 
 		while( $row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT) ) {
