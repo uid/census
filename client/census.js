@@ -26,7 +26,7 @@ if (typeof jQuery == 'undefined') {
 
 (function( window, undefined ) {
 	census = {};
-	census.DEBUG = false;
+	census.DEBUG = true;
 	census.requestCensusURL = 'http://roc.cs.rochester.edu/census/issue_task.php';
 	census.submitCensusURL = 'http://roc.cs.rochester.edu/census/submit_task.php';
 
@@ -87,10 +87,10 @@ if (typeof jQuery == 'undefined') {
 	};
 
 	census._insertCensusQuestion = function(question) {
-		var css = "<style type='text/css'>#censusForm { border: 1px solid darkGray; border-radius: 10px; margin-top: 20px; padding: 10px; } #censusForm .censusTitle { font-size: 20pt; color: #8A1946; } </style>";
-		var wrapped = $(css + "<form id='censusForm'>" +
-			"<div><div class='censusTitle'>Mechanical Turk Census</div>" +
-			question + 
+		var css = "<style type='text/css'>.censusForm { border: 1px solid #333333; border-radius: 10px; margin-top: 20px; padding: 10px; font-family: Helvitica Neue, Helvetica, Arial, sans-serif; max-width: 800px; display: none; }  .censusTitle { font-size: 20pt; color: #8A1946; font-weight: 800; } .censusSubtitle { font-size: 10pt; color: darkGray; font-weight: 200; } .censusQuestion { margin-top: 20px; } </style>";
+		var wrapped = $(css + "<form id='censusForm' class='censusForm'>" +
+			"<div><div class='censusTitle'>Mechanical Turk Census</div><div class='censusSubtitle'>We are a group of researchers at Stanford, MIT, U. Rochester, U. Michigan, UT Austin and elsewhere trying to learn more about the folks on Mechanical Turk. We just need one more quick response from you.</div>" +
+			"<div class='censusQuestion'>" + question + "</div>" + 
 			"<input type='submit'></input></form>");
 
 		$(questionDiv).append(wrapped);
@@ -99,7 +99,7 @@ if (typeof jQuery == 'undefined') {
     		event.preventDefault();
     		var response = $('#censusForm').serializeArray();
     		census._submitCensusResponse(response);
-		});		
+		}).fadeIn();
 	}
 
 	/**
