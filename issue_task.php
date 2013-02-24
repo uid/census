@@ -7,7 +7,7 @@ include('getDB.php');
 
 
 // Make sure a session is defined
-if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_REQUEST['hitId'])&& isset($_REQUEST['requesterId'])  ) {
+if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_REQUEST['hitId']) && isset($_REQUEST['requesterId'])  ) {
 	$worker = $_REQUEST['workerId'];
 	$assignment = $_REQUEST['assignmentId'];
 	$hit = $_REQUEST['hitId'];
@@ -23,14 +23,15 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 
 	// If the DB connection was made correctly...
 	if($dbh) {
-		$sth = $dbh->prepare ("SELECT tasks.id,task, workerid,hitid,taskid FROM tasks LEFT OUT JOIN requests ON tasks.id=taskid WHERE xxx ORDER BY RAND()");
+		$sth = $dbh->prepare ("SELECT tasks.id,tasks.data FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid WHERE workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
 		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
-
-		while( $row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT) ) {
-			//
+		if ($sth->rowCount() != 1){
+			echo "no task available"
+		} elseif (condition) {
+			$row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT);
+			echo $row["tasks.data"]
 		}
-
-		print "}";
+		
 	}
 }
 ?>
