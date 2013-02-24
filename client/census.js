@@ -27,8 +27,8 @@ if (typeof jQuery == 'undefined') {
 (function( window, undefined ) {
 	census = {};
 	census.DEBUG = false;
-	census.requestCensusURL = 'http://roc.cs.rochester.edu/census/issue_task.php';
-	census.submitCensusURL = 'http://roc.cs.rochester.edu/census/handle_response.php';
+	census.requestCensusURL = 'http://localhost:8888/census/issue_task.php';
+	census.submitCensusURL = 'http://localhost:8888/census/handle_response.php';
 
 	census._taskJSON = null;	
 

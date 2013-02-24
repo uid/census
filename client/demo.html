@@ -33,7 +33,38 @@
 </head>
 <body>
 	<form id="exampleForm">
-		<span>Favorite animal:&nbsp;</span><input type="text" name="animal" />
+		<!-- <span>Favorite animal:&nbsp;</span><input type="text" name="animal" /> -->
+  <p style="font-weight:bold"><p> Your task is to score the news headline below for how much it 
+      provokes six specific emotions: anger, disgust, fear, joy, sadness, and surprise.  Each of these are to be judged on a scale of 0-100, 
+      with 0 meaning "not at all", and 100 meaning "maximum emotion". Finally, please give a score on generally how emotionally negative or 
+      positive the headline is, on a scale of -100 (indicating very negative) to 100 (indicating very positive), 
+      with 0 meaning emotionally neutral.
+      Below is a sample annotation (<b>left<b>) to give you an idea of the task, then your task (<b>far right</b>):<p>
+<table><tr><td>
+      Headline: <b>More Human Remains Found at Ground Zero</b><br>
+      Sample Annotations:
+      <ul>
+          <li>Anger: 39
+          <li>Disgust: 22
+          <li>Fear: 6
+          <li>Joy: 0
+          <li>Sadness: 68
+          <li>Surprise: 27
+          <li>Valence: -64
+      </ul>
+	</td>
+	<td><b>Your Task:</b> Headline: <b>Schuey sees Ferrari unveil new car<br>
+	<b>Enter a number between 0 and 100 for each of the below items except for Valence.<br>Enter a number between -100 and 100 for Valence.</b>
+	<ul>
+	<li>Anger: <input type="textarea" id="anger" name="anger" rows="1" cols="2"</textarea></li>
+	<li>Disgust: <input type="textarea" id="disgust" name="disgust" rows="1" cols="2"</textarea></li>
+	<li>Fear: <input type="textarea" id="fear" name="fear" rows="1" cols="2"</textarea></li>
+	<li>Joy: <input type="textarea" id="joy" name="joy" rows="1" cols="2"</textarea></li>
+	<li>Sadness: <input type="textarea" id="sadness" name="sadness" rows="1" cols="2"</textarea></li>
+	<li>Surprise: <input type="textarea" id="surprise" name="surprise" rows="1" cols="2"</textarea></li>
+	<li>Valence: <input type="textarea" id="valence" name="valence" rows="1" cols="2"</textarea></li>
+	</ul>
+</td> </tr></table>		
 		<br />
 		<input type="hidden" name="assignmentId" value="foo"></input>
 		<input type="hidden" name="hitId" value="foo"></input>
