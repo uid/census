@@ -1,4 +1,5 @@
 <?php
+header('content-type: application/json; charset=utf-8');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
@@ -26,12 +27,12 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 		$sth = $dbh->prepare ("SELECT tasks.id,tasks.content FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid AND workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
 		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
 		if ($sth->rowCount() != 1){
-			echo "no task available";
+			$data = "no task available";
 		} else {
-			$row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT);
-			echo $row["content"];
+			$row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT);			
+			$data = $row["content"];
 		}
-		
+		echo $_GET['callback'] . '('.json_encode($data).')';		
 	}
 }
 ?>
