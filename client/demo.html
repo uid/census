@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Census demonstration</title>
+	<script src="jquery-1.9.1.js" type="text/javascript"></script>	
+	<script src="census.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$.fn.serializeObject = function()
+		{
+		    var o = {};
+		    var a = this.serializeArray();
+		    $.each(a, function() {
+		        if (o[this.name] !== undefined) {
+		            if (!o[this.name].push) {
+		                o[this.name] = [o[this.name]];
+		            }
+		            o[this.name].push(this.value || '');
+		        } else {
+		            o[this.name] = this.value || '';
+		        }
+		    });
+		    return o;
+		};
+
+		$(document).ready(function() {
+			$("#exampleForm").on("submit", function(event){
+    			event.preventDefault();
+    			$('#animalSubmit').prop('disabled', 'true');
+    			census.submit( $('#exampleForm').serializeObject() );	
+			});
+		});
+	</script>
+</head>
+<body>
+	<form id="exampleForm">
+		<span>Favorite animal:&nbsp;</span><input type="text" name="animal" />
+		<br />
+		<input type="hidden" name="assignmentId" value="foo"></input>
+		<input type="hidden" name="hitId" value="foo"></input>
+		<input type="hidden" name="workerId" value="foo"></input>
+		<input type="hidden" name="requesterId" value="foo"></input>
+		<input id='animalSubmit' type="submit" />
+	</form>
+
+	<div id="questionDiv"></div>
+</body>
+</html>
