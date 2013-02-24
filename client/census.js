@@ -88,12 +88,12 @@ if (typeof jQuery == 'undefined') {
 	};
 
 	census._insertCensusQuestion = function(question, request_id) {
-		var css = "<style type='text/css'>.censusForm { border: 1px solid #BBBBBB; border-radius: 10px; margin-top: 20px; padding: 10px; font-family: Helvitica Neue, Helvetica, Arial, sans-serif; max-width: 800px; display: none; }  .censusTitle { font-size: 20pt; color: #8A1946; font-weight: 800; } .censusSubtitle { font-size: 10pt; color: darkGray; font-weight: 200; } .censusQuestion { margin-top: 20px; } </style>";
+		var css = "<style type='text/css'>.censusForm { border: 1px solid #BBBBBB; border-radius: 10px; margin-top: 20px; padding: 10px; font-family: Helvitica Neue, Helvetica, Arial, sans-serif; max-width: 800px; display: none; }  .censusTitle { font-size: 20pt; color: #8A1946; font-weight: 800; } .censusSubtitle { font-size: 10pt; color: darkGray; font-weight: 200; } .censusQuestion { margin-top: 20px; }  .censusSubmit { margin-top: 20px; } </style>";
 		var wrapped = $(css + "<form id='censusForm' class='censusForm'>" +
 			"<input type='hidden' name='requestId' value='" + request_id + "'></input>" +
 			"<div><div class='censusTitle'>Mechanical Turk Census</div><div class='censusSubtitle'>We are a group of researchers at Stanford, MIT, U. Rochester, U. Michigan, UT Austin and elsewhere trying to learn more about the folks on Mechanical Turk. We just need one more quick response from you.</div>" +
 			"<div class='censusQuestion'>" + question + "</div>" + 
-			"<input type='submit'></input></form>");
+			"<input type='submit' class='censusSubmit'></input></form>");
 
 		$(questionDiv).append(wrapped);
 
