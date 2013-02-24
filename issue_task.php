@@ -23,7 +23,7 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 
 	// If the DB connection was made correctly...
 	if($dbh) {
-		$sth = $dbh->prepare ("SELECT tasks.id,tasks.data FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid WHERE workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
+		$sth = $dbh->prepare ("SELECT tasks.id,tasks.data FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid AND workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
 		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
 		if ($sth->rowCount() != 1){
 			echo "no task available";
