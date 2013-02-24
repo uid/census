@@ -28,7 +28,7 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
 		if ($sth->rowCount() != 1){
 			$data = array(
-		  		"success"=>true,
+		  		"success"=>false,
 		  		"data"=>"no task available";
 			);
 
