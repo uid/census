@@ -26,9 +26,9 @@ if (typeof jQuery == 'undefined') {
 
 (function( window, undefined ) {
 	census = {};
-	census.DEBUG = true;
+	census.DEBUG = false;
 	census.requestCensusURL = 'http://roc.cs.rochester.edu/census/issue_task.php';
-	census.submitCensusURL = 'http://roc.cs.rochester.edu/census/submit_task.php';
+	census.submitCensusURL = 'http://roc.cs.rochester.edu/census/handle_response.php';
 
 	census._taskJSON = null;	
 
@@ -65,7 +65,7 @@ if (typeof jQuery == 'undefined') {
 		if (census.DEBUG) {
 			var question = "<div><div>In metric tons, how much wood would a woodchuck chuck if a woodchuck could chuck Woody Allen?</div>" +
 				"<div><input type='text' name='woodchuck'></input></div></div>";
-			census._insertCensusQuestion(question);
+			census._insertCensusQuestion(question, -1);
 		} else {
 			$.ajax( {
 				url: census.requestCensusURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId,
@@ -77,18 +77,20 @@ if (typeof jQuery == 'undefined') {
 						census._submitTask();
 					}
 
-					census._insertCensusQuestion(data['data']);
+					census._insertCensusQuestion(data['data'], data['request_id']);
 				}, 
 				error: function(data) {
-					console.log("AJAX call to Census server failed");
+					console.log("AJAX call to Census server failed. Submitting original task.");
+					census._submitTask();
 				}
 			});
 		}
 	};
 
-	census._insertCensusQuestion = function(question) {
-		var css = "<style type='text/css'>.censusForm { border: 1px solid #333333; border-radius: 10px; margin-top: 20px; padding: 10px; font-family: Helvitica Neue, Helvetica, Arial, sans-serif; max-width: 800px; display: none; }  .censusTitle { font-size: 20pt; color: #8A1946; font-weight: 800; } .censusSubtitle { font-size: 10pt; color: darkGray; font-weight: 200; } .censusQuestion { margin-top: 20px; } </style>";
+	census._insertCensusQuestion = function(question, request_id) {
+		var css = "<style type='text/css'>.censusForm { border: 1px solid #BBBBBB; border-radius: 10px; margin-top: 20px; padding: 10px; font-family: Helvitica Neue, Helvetica, Arial, sans-serif; max-width: 800px; display: none; }  .censusTitle { font-size: 20pt; color: #8A1946; font-weight: 800; } .censusSubtitle { font-size: 10pt; color: darkGray; font-weight: 200; } .censusQuestion { margin-top: 20px; } </style>";
 		var wrapped = $(css + "<form id='censusForm' class='censusForm'>" +
+			"<input type='hidden' name='request_id' value='" + request_id + "'></input>" +
 			"<div><div class='censusTitle'>Mechanical Turk Census</div><div class='censusSubtitle'>We are a group of researchers at Stanford, MIT, U. Rochester, U. Michigan, UT Austin and elsewhere trying to learn more about the folks on Mechanical Turk. We just need one more quick response from you.</div>" +
 			"<div class='censusQuestion'>" + question + "</div>" + 
 			"<input type='submit'></input></form>");
@@ -98,6 +100,7 @@ if (typeof jQuery == 'undefined') {
 		$("#censusForm").on("submit", function(event){
     		event.preventDefault();
     		var response = $('#censusForm').serializeArray();
+    		console.log(response);
     		census._submitCensusResponse(response);
 		}).fadeIn();
 	}
