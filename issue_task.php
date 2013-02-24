@@ -26,15 +26,15 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 	if($dbh) {
 		$sth = $dbh->prepare ("SELECT tasks.id,content FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid AND workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
 		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
-		$rows = $sth->fetch(PDO::FETCH_NUM);
-		if( $rows[0] != 1 ) {
+		//$rows = $sth->fetch(PDO::FETCH_NUM);
+			$row = $sth->fetch(PDO::FETCH_ASSOC);
+		if( $row['id'] == null ) {
 			$data = array(
 		  		"success"=>false,
 		  		"data"=>"no task available"
 			);
 		} else {
 			$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
-			$row = $sth->fetch(PDO::FETCH_ASSOC);
 			$data = array(
 		  		"success"=>true,
 		  		"data"=>$row["content"]
