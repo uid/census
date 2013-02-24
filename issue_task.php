@@ -36,7 +36,7 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 			$sth = $dbh->prepare('INSERT INTO requests (requesterid, workerid, hitid, ip, mac, data, browser, taskid) VALUES (:requester, :worker, :hit, :ip, "", :data, "", :assignment)');
 			$sth->execute(array(':requester'=>$requester, ':worker'=>$worker, ':hit'=>$hit, ':ip'=>$_SERVER['REMOTE_ADDR'], 
 				':data'=>serialize($_SERVER), ':assignment'=>$row['id']));
-			echo $dbh->lastInsertId();
+
 			$data = array(
 		  		"success"=>true,
 		  		"summary"=>$row["summary"],

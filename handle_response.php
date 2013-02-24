@@ -16,10 +16,13 @@ if( isset($_REQUEST['requestId']) ) {
 	} catch(PDOException $e) {
 		echo $e->getMessage();
 	}
+
 	// If the DB connection was made correctly...
 	if($dbh) {
 		$sth = $dbh->prepare('INSERT INTO responses (requestid, response) VALUES (:requestid, :response)');
-		$sth->execute(array(':requestid'=>$request, ':response'=>file_get_contents('php://input')));
+		//$sth->execute(array(':requestid'=>$request, ':response'=>file_get_contents('php://input')));
+		$sth->execute(array(':requestid'=>$request, ':response'=>$_SERVER['QUERY_STRING']));
+
 	  	if ($sth->rowCount() != 1)
 			$data = array(
 		  		"success"=>false
