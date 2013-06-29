@@ -108,7 +108,7 @@ if (typeof jQuery == 'undefined') {
 	/**
 	 * Submits the Census question response back to the server, then submits the HIT
 	 */
-	census._submitCensusResponse = function(response) {
+	census._submitCensusResponse = function(response) { 
 		if (census.DEBUG) {
 			census._submitTask();
 		} else {
@@ -140,6 +140,9 @@ if (typeof jQuery == 'undefined') {
 	 * Submits the original HIT to Mechanical Turk
 	 */
 	census._submitTask = function() {
+		if (census.DEBUG) {
+			return; //remove later
+		}
 		var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.mturk.com/mturk/externalSubmit'></form>");
 		$.each(census._taskJSON, function(index, value) {
 			hiddenForm.append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
