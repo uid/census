@@ -1,0 +1,8 @@
+<p>Please specify your ethnicity.</p>
+<select name='response'>
+	<option>White or Caucasian</option>
+	<option>Hispanic or Latino</option>
+	<option>Black or African American</option>
+	<option>Native American or Alaska Native</option>
+	<option>Asian or Pacific Islander</option>
+</select>

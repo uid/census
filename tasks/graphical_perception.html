@@ -1,0 +1,32 @@
+<p>Two rectangles are shown below. The smaller rectangle is outlined in blue. Please estimate the percentage the smaller (blue) is of the larger (black). For example, if the blue rectangle was half the size of the black rectangle, then the correct answer would be 50%. Please do not include the percent sign in your response.</p>
+Percentage of smaller (blue) rectangle to larger (black) rectangle: <input type="text" name="test1">%<br>
+<canvas id="test1" width="300" height="400"></canvas>
+
+<script>
+	var ctx = document.getElementById("test1").getContext("2d");
+	var height1 = Math.random();
+	var height2 = Math.random();
+	
+	ctx.beginPath();
+	if (height1 < height2) ctx.strokeStyle="blue";
+	ctx.lineWidth = "3";
+	ctx.rect(0,0, 50, 200*height1);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	if (height2 < height1) ctx.strokeStyle="blue";
+	ctx.lineWidth = "3";
+	ctx.rect(0, 200*height1+1, 50, 200*height2);
+	ctx.stroke();
+
+	if (height1 < height2) {
+		soln = height1/height2;
+	} else {
+		soln = height2/height1;
+	}
+
+	$('#censusForm').submit(function() {
+		var hiddenForm = $("<input type='hidden' name='test1_soln' value=" + soln + "/>");
+		$('#censusForm').append(hiddenForm);
+	});
+</script>
