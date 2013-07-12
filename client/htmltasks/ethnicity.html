@@ -1,0 +1,36 @@
+<script>
+  var g_isVisible = false;  
+  function toggleVisibility()
+  {
+     if (g_isVisible)
+     {
+        document.getElementById('otherDiv').style.visibility='hidden';
+     }
+     else
+     {
+        document.getElementById('otherDiv').style.visibility='visible';
+        document.getElementById('other').focus();
+     }
+     g_isVisible = (! g_isVisible);
+  }
+</script>
+
+<p>
+  What is your ethnicity/race?  (Check all that apply.)
+</p>
+<form>
+<input type="checkbox" name="response" value="white"/>White<br>
+<input type="checkbox" name="response" value="hispanic"/>Hispanic<br>
+<input type="checkbox" name="response" value="black"/>Black or African American<br>
+<input type="checkbox" name="response" value="islander"/>Native Hawaiian or Other Pacific Islander<br>
+<input type="checkbox" name="response" value="indian"/>Indian<br>
+<input type="checkbox" name="response" value="asian"/>Asian<br>
+<input type="checkbox" name="response" value="native"/>Native American or Alaska Native<br>
+<input type="checkbox" onchange="toggleVisibility()"/>Other
+</form>
+<div style="visibility: hidden" id="otherDiv">
+  <table><tr><td width="50px">&nbsp</td>
+             <td><input name="response" id="other"/>
+         </tr>
+  </table>
+</div>
