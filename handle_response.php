@@ -19,7 +19,7 @@ if( isset($_REQUEST['requestId']) ) {
 
 	// If the DB connection was made correctly...
 	if($dbh) {
-		$sth = $dbh->prepare('INSERT INTO responses (requestid, response) VALUES (:requestid, :response)');
+		$sth = $dbh->prepare('INSERT INTO responses (requestid, response) VALUES (:requestid, :response)'); // todo: add a column for the ip address or location
 		//$sth->execute(array(':requestid'=>$request, ':response'=>file_get_contents('php://input')));
 		$sth->execute(array(':requestid'=>$request, ':response'=>$_SERVER['QUERY_STRING']));
 

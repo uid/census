@@ -27,8 +27,8 @@ if (typeof jQuery == 'undefined') {
 (function( window, undefined ) {
 	census = {};
 	census.DEBUG = false;
-	census.requestCensusURL = 'http://localhost:8888/census/issue_task.php';
-	census.submitCensusURL = 'http://localhost:8888/census/handle_response.php';
+	census.requestCensusURL = '/census/issue_task.php';
+	census.submitCensusURL = '/census/handle_response.php';
 
 	census._taskJSON = null;	
 
@@ -37,6 +37,7 @@ if (typeof jQuery == 'undefined') {
 	 * and display the Census task
 	 */
 	census.submit = function( taskJSON, questionDiv ) {
+		console.log(this._taskJSON);
 		this._taskJSON = taskJSON;
 		if (Object.prototype.toString.call(taskJSON) === '[object Array]') {
 			console.log("Please send a JSON object to census.submit()");
@@ -52,9 +53,15 @@ if (typeof jQuery == 'undefined') {
 			}
 		};
 
-
-		console.log(this._taskJSON);
-		this._requestCensusTask($('#questionDiv'), 'requesterId', 'workerId', 'hitId', 'assignmentId');
+		// The user (i.e. mechanical turk worker) is done with the real task; now comes our census question
+//		if (probability) // todo -- use Math.rand() to ask the user with prob=0.25 our census question
+//		{
+			this._requestCensusTask($('#questionDiv'), 'requesterId', 'workerId', 'hitId', 'assignmentId');
+//		}
+//		else
+//		{
+//			this._submitTask();
+//		}
 	};
 
 	/**
