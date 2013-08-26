@@ -35,6 +35,8 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 	$assignment = $_REQUEST['assignmentId'];
 	$hit = $_REQUEST['hitId'];
 	$requester = $_REQUEST['requesterId'];
+    $country = "US";
+
 
 	// Try to connect to the DB
 	try {
@@ -67,9 +69,6 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 			$sth = $dbh->prepare($query);
 
 			file_put_contents("debug.txt", $query);
-
-			//$sth = $dbh->prepare('INSERT INTO requests (requesterid, workerid, hitid, ip, mac, data, browser, taskid, country) 
-			//	VALUES (:requester, :worker, :hit, :ip, "", :data, "", :assignment, $country)');
 
 			$sth->execute(array(':requester'=>$requester, ':worker'=>$worker, ':hit'=>$hit, ':ip'=>$_SERVER['REMOTE_ADDR'],  
 				':data'=>serialize($_SERVER), ':assignment'=>$row['id'], ':country'=>$country));
