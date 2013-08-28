@@ -1,4 +1,5 @@
 <?php
+
 header('content-type: application/json; charset=utf-8');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -19,8 +20,8 @@ if( isset($_REQUEST['requestId']) ) {
 
 	// If the DB connection was made correctly...
 	if($dbh) {
-		$sth = $dbh->prepare('INSERT INTO responses (requestid, response) VALUES (:requestid, :response)'); // todo: add a column for the ip address or location
-		//$sth->execute(array(':requestid'=>$request, ':response'=>file_get_contents('php://input')));
+		$sth = $dbh->prepare('INSERT INTO responses (requestid, response) VALUES (:requestid, :response)');
+		
 		$sth->execute(array(':requestid'=>$request, ':response'=>$_SERVER['QUERY_STRING']));
 
 	  	if ($sth->rowCount() != 1)

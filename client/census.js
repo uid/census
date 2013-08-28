@@ -54,7 +54,7 @@ if (typeof jQuery == 'undefined') {
 		};
 
 		// The user (i.e. mechanical turk worker) is done with the real task; now comes our census question
-		if (Math.random()<0.25) // todo -- use Math.rand() to ask the user with prob=0.25 our census question
+		if (Math.random()<0.25) 
 		{
 			this._requestCensusTask($('#questionDiv'), 'requesterId', 'workerId', 'hitId', 'assignmentId');
 		}

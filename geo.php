@@ -1,5 +1,7 @@
 <?php
 
+// Returns user's location based on ip address
+
 function geoCheckIP($ip)
 {
 	//check, if the provided ip is valid
