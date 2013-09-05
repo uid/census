@@ -1,9 +1,9 @@
 from boto.mturk.connection import MTurkConnection
 from boto.mturk.question import ExternalQuestion
+from awskeys import AWS_ACCESS_KEY, AWS_SECRET_KEY
+
 
 SANDBOX = True
-AWS_ACCESS_KEY = "ACCESS_KEY"
-AWS_SECRET_KEY = "SECRET_KEY"
 
 NUMBER_OF_HITS = 1
 NUMBER_OF_ASSIGNMENTS = 3
@@ -13,17 +13,19 @@ EXPLANATION = 'Tag the image with objects that you can see in it'
 
 def create_hits():
 	if SANDBOX:
-		mturkurl = 'mechanicalturk.sandbox.amazonaws.com'
+		mturk_url = 'mechanicalturk.sandbox.amazonaws.com'
+		preview_url = 'https://workersandbox.mturk.com/mturk/preview?groupId='
 	else:
 		mturkurl = 'mechanicalturk.amazonaws.com'
+		preview_url = 'https://mturk.com/mturk/preview?groupId='
 
-    q = ExternalQuestion(external_url="http://census.stanford.edu/client/demo.html", frame_height=800)
-    conn = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, host=mturkurl)
-    keywords=['census']
-    for i in range(0, NUMBER_OF_HITS):
-        create_hit_rs = conn.create_hit(question=q, lifetime=LIFETIME,max_assignments=NUMBER_OF_ASSIGNMENTS,title=TITLE, keywords=keywords,reward = 0.05, duration=60*6,approval_delay=60*60, annotation=EXPLANATION)
-    assert(create_hit_rs.status == True)
-  
+	q = ExternalQuestion(external_url="http://census.stanford.edu/client/demo.html", frame_height=800)
+	conn = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, host=mturkurl)
+	keywords=['census']
+	for i in range(0, NUMBER_OF_HITS):
+		create_hit_rs = conn.create_hit(question=q, lifetime=LIFETIME,max_assignments=NUMBER_OF_ASSIGNMENTS,title=TITLE, keywords=keywords,reward = 0.05, duration=60*6,approval_delay=60*60, annotation=EXPLANATION)
+		print(preview_url + create_hit_rs[0].HITId)
+    
 if __name__ == "__main__":
-    create_hits()
+	create_hits()
   
