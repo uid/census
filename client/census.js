@@ -27,8 +27,8 @@ if (typeof jQuery == 'undefined') {
 (function( window, undefined ) {
 	census = {};
 	census.DEBUG = false;
-	census.requestCensusURL = '/census/issue_task.php';
-	census.submitCensusURL = '/census/handle_response.php';
+	census.requestCensusURL = '/issue_task.php';
+	census.submitCensusURL = '/handle_response.php';
 
 	census._taskJSON = null;	
 
