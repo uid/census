@@ -14,6 +14,9 @@
  * you call census.submit(your_task_json_data, '#div-id-for-question-insertion').
  */
 
+ var sandbox = true; 
+
+
 if (typeof console == 'undefined') {
 	console = { log: function() {},
 				debug: function() {} };
@@ -150,7 +153,11 @@ if (typeof jQuery == 'undefined') {
 		if (census.DEBUG) {
 			return; //remove later
 		}
-		var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.mturk.com/mturk/externalSubmit'></form>");
+		if (sandbox == true)
+			var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.workersandbox.com/mturk/externalSubmit'></form>");
+		else 
+			var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.mturk.com/mturk/externalSubmit'></form>");
+
 		$.each(census._taskJSON, function(index, value) {
 			hiddenForm.append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
 		});
