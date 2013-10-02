@@ -154,14 +154,19 @@ if (typeof jQuery == 'undefined') {
 			return; //remove later
 		}
 		if (sandbox == true)
-			var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.workersandbox.com/mturk/externalSubmit'></form>");
+			var hiddenForm = $("<form id='censusMturkSubmit' action='http://workersandbox.mturk.com/mturk/externalSubmit'></form>");
 		else 
 			var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.mturk.com/mturk/externalSubmit'></form>");
 
 		$.each(census._taskJSON, function(index, value) {
-			hiddenForm.append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
+			//hiddenForm.append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
+			$('form[name="hitForm"]').append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
 		});
-		$('body').append(hiddenForm);
-		hiddenForm.submit();
+
+		alert("IDs: worker=" + gup("workerId") + " | assignment=" + gup("assignmentId") + " | hit=" + gup("hitId") + " | sumitTo=" + gup("turkSubmitTo"))
+		
+		//$('body').append(hiddenForm);
+		//hiddenForm.submit();
+		$('form[name="hitForm"]').submit();
 	}
 }(this));
