@@ -59,7 +59,7 @@ if (typeof jQuery == 'undefined') {
 		// The user (i.e. mechanical turk worker) is done with the real task; now comes our census question
 		if (Math.random()<0.25) 
 		{
-			this._requestCensusTask($('#questionDiv'), 'requesterId', 'workerId', 'hitId', 'assignmentId');
+			this._requestCensusTask($('#questionDiv'), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
 		}
 		else
 		{
