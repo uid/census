@@ -38,7 +38,7 @@ if (typeof jQuery == 'undefined') {
 	 * and display the Census task
 	 */
 	census.submit = function( taskJSON, questionDiv, submitForm ) {
-		console.log(this._taskJSON);
+		console.log(taskJSON);
 		this._taskJSON = taskJSON;
 		if (Object.prototype.toString.call(taskJSON) === '[object Array]') {
 			console.log("Please send a JSON object to census.submit()");
