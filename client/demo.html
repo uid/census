@@ -24,13 +24,13 @@
 		};
 
 		$(document).ready(function() {
-			$.each(["requesterId", "workerId", "hitId", "assignmentId"], function(index, value) {
+			$.each([/*"requesterId", */"workerId", "hitId", "assignmentId", "turkSubmitTo"], function(index, value) {
 				$('#exampleForm').append("<input type='hidden' name='" + value + "' value='" + gup(value) + "'></input>");
 			});			
 
 			$("#exampleForm").on("submit", function(event){
     			event.preventDefault();
-    			$('#animalSubmit').prop('disabled', 'true');
+    			$('#submitBtn').prop('disabled', 'true');
     			census.submit( $('#exampleForm').serializeObject(), '#questionDiv', '#exampleForm'  );	
 			});
 		});
@@ -38,14 +38,13 @@
 </head>
 <body>
 	<form id="exampleForm">
-		<!-- <span>Favorite animal:&nbsp;</span><input type="text" name="animal" /> -->
-  <p style="font-weight:bold"><p>Your task is to score the news headline below for how much it 
+  	<p style="font-weight:bold"><p>Your task is to score the news headline below for how much it 
       provokes six specific emotions: anger, disgust, fear, joy, sadness, and surprise.  Each of these are to be judged on a scale of 0-100, 
       with 0 meaning "not at all", and 100 meaning "maximum emotion". Finally, please give a score on generally how emotionally negative or 
       positive the headline is, on a scale of -100 (indicating very negative) to 100 (indicating very positive), 
       with 0 meaning emotionally neutral.
       Below is a sample annotation (<b>left<b>) to give you an idea of the task, then your task (<b>far right</b>):<p>
-<table><tr><td>
+	<table><tr><td>
       Headline: <b>More Human Remains Found at Ground Zero</b><br>
       Sample Annotations:
       <ul>
@@ -71,12 +70,7 @@
 	</ul>
 </td> </tr></table>		
 		<br />
-		<input type="hidden" name="assignmentId" value="foo"></input>
-		<input type="hidden" name="hitId" value="foo"></input>
-		<input type="hidden" name="workerId" value="foo"></input>
-		<input type="hidden" name="requesterId" value="foo"></input>
-		<input type="hidden" name="turkSubmitTo" value="foo"></input>
-		<input id='animalSubmit' type="submit" />
+		<input id='submitBtn' type="submit" />
 	</form>
 
 	<div id="questionDiv"></div>

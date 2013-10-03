@@ -14,9 +14,6 @@
  * you call census.submit(your_task_json_data, '#div-id-for-question-insertion', '#form-id-to-submit-to-turk').
  */
 
- var sandbox = true; 
-
-
 if (typeof console == 'undefined') {
 	console = { log: function() {},
 				debug: function() {} };
@@ -49,10 +46,10 @@ if (typeof jQuery == 'undefined') {
 		}
 
 		// Have they sent all the relevant MTurk IDs?
-		var requiredFields = ["requesterId", "workerId", "hitId", "assignmentId"];
+		var requiredFields = [/*"requesterId", */"workerId", "hitId", "assignmentId"];
 		for (var i=0; i<requiredFields.length; i++) {
 			if(!this._taskJSON.hasOwnProperty(requiredFields[i])) {
-				console.log("Error: please include " + requiredFields[i] + " in the task JSON");
+				console.log("Error: please include " + requiredFields[i] + " in the task JSON that you send to the Census script");
 				return;
 			}
 		};
