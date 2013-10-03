@@ -11,7 +11,7 @@
  * 1) Include jQuery and Census.js in your MTurk HIT's HTML.
  * 2) Add a div where census can display a demographic or benchmark task to the HTML.
  * 3) Register a listener so that when the worker tries to submit the work, 
- * you call census.submit(your_task_json_data, '#div-id-for-question-insertion').
+ * you call census.submit(your_task_json_data, '#div-id-for-question-insertion', '#form-id-to-submit-to-turk').
  */
 
  var sandbox = true; 
@@ -32,6 +32,7 @@ if (typeof jQuery == 'undefined') {
 	census.DEBUG = false;
 	census.requestCensusURL = '/issue_task.php';
 	census.submitCensusURL = '/handle_response.php';
+	census.submitForm = null;
 
 	census._taskJSON = null;	
 
@@ -39,7 +40,7 @@ if (typeof jQuery == 'undefined') {
 	 * When the worker tries to submit the HIT, call this function to request
 	 * and display the Census task
 	 */
-	census.submit = function( taskJSON, questionDiv ) {
+	census.submit = function( taskJSON, questionDiv, submitForm ) {
 		console.log(this._taskJSON);
 		this._taskJSON = taskJSON;
 		if (Object.prototype.toString.call(taskJSON) === '[object Array]') {
@@ -56,10 +57,12 @@ if (typeof jQuery == 'undefined') {
 			}
 		};
 
+		this.submitForm = submitForm;
+
 		// The user (i.e. mechanical turk worker) is done with the real task; now comes our census question
 		if (Math.random()<0.25) 
 		{
-			this._requestCensusTask($('#questionDiv'), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
+			this._requestCensusTask($(questionDiv), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
 		}
 		else
 		{
@@ -153,6 +156,7 @@ if (typeof jQuery == 'undefined') {
 		if (census.DEBUG) {
 			return; //remove later
 		}
+		/*
 		if (sandbox == true)
 			var hiddenForm = $("<form id='censusMturkSubmit' action='http://workersandbox.mturk.com/mturk/externalSubmit'></form>");
 		else 
@@ -168,5 +172,7 @@ if (typeof jQuery == 'undefined') {
 		//$('body').append(hiddenForm);
 		//hiddenForm.submit();
 		$('form[name="hitForm"]').submit();
+		*/
+		this.submitForm.submit();
 	}
 }(this));

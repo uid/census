@@ -24,10 +24,14 @@
 		};
 
 		$(document).ready(function() {
+			$.each(["requesterId", "workerId", "hitId", "assignmentId"], function(index, value) {
+				$('#exampleForm').append("<input type='hidden' name='" + value + "' value='" + gup(value) + "'></input>");
+			});			
+
 			$("#exampleForm").on("submit", function(event){
     			event.preventDefault();
     			$('#animalSubmit').prop('disabled', 'true');
-    			census.submit( $('#exampleForm').serializeObject() );	
+    			census.submit( $('#exampleForm').serializeObject(), '#questionDiv', '#exampleForm'  );	
 			});
 		});
 	</script>
