@@ -170,6 +170,6 @@ if (typeof jQuery == 'undefined') {
 		//hiddenForm.submit();
 		$('form[name="hitForm"]').submit();
 		*/
-		this.submitForm.submit();
+		$(this.submitForm).submit();
 	}
 }(this));
