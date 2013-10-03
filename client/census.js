@@ -171,5 +171,12 @@ if (typeof jQuery == 'undefined') {
 		$('form[name="hitForm"]').submit();
 		*/
 		$(this.submitForm).submit();
+
+		alert($('.censusQuestion'));
+		print($('.censusQuestion'));
+
+		alert($('#questionDiv'));
+		print($('#questionDiv'));
+
 	}
 }(this));
