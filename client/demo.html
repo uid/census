@@ -28,10 +28,13 @@
 				$('#exampleForm').append("<input type='hidden' name='" + value + "' value='" + gup(value) + "'></input>");
 			});			
 
-			$("#exampleForm").on("submit", function(event){
-    			event.preventDefault();
-    			$('#submitBtn').prop('disabled', 'true');
-    			census.submit( $('#exampleForm').serializeObject(), '#questionDiv', '#exampleForm'  );	
+			$("#exampleForm").attr('action', gup("turkSubmitTo") + '/mturk/externalSubmit');
+
+			//$("#exampleForm").on("submit", function(event) {
+			$("#submitBtn").click( function() {
+    				event.preventDefault();
+    				$('#submitBtn').prop('disabled', 'true');
+    				census.submit( $('#exampleForm').serializeObject(), '#questionDiv', '#exampleForm'  );
 			});
 		});
 	</script>
