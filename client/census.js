@@ -57,7 +57,7 @@ if (typeof jQuery == 'undefined') {
 		this.submitForm = submitForm;
 
 		// The user (i.e. mechanical turk worker) is done with the real task; now comes our census question
-		if (Math.random()<0.25) 
+		if (Math.random()<10.25) 
 		{
 			this._requestCensusTask($(questionDiv), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
 		}
@@ -108,10 +108,11 @@ if (typeof jQuery == 'undefined') {
 		$(questionDiv).append(wrapped);
 
 		$("#censusForm").on("submit", function(event){
-    		event.preventDefault();
-    		var response = $('#censusForm').serialize();
-    		console.log(response);
-    		census._submitCensusResponse(response);
+    			event.preventDefault();
+    			var response = $('form[name="censusForm"]').serialize();
+    			console.log(response);
+			alert("F: " + $('form[name="censusForm"]').serialize() + " || " + response)
+    			census._submitCensusResponse(response);
 		}).fadeIn();
 	}
 
@@ -173,7 +174,14 @@ if (typeof jQuery == 'undefined') {
 		*/
 
 		//$('form[name="hitForm"]').submit();
-		alert(this.submitForm)
+		
+		//alert("Q: " + $('#questionDiv').serialize())
+		//alert("I: " + $('input').serialize())
+		//alert("F: " + $('form[name="censusForm"]').serialize())
+
+		
+
+		//alert(this.submitForm)
 		$(this.submitForm).submit();
 	}
 }(this));
