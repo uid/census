@@ -9,7 +9,7 @@ function geoCheckIP($ip)
 	}
 
 	//contact ip-server
-	$response=@file_get_contents('http://www.freegeoip.net/json/'.$ip);
+	$response=@file_get_contents('https://www.freegeoip.net/json/'.$ip);
 	$locations=json_decode($response, true);
 
 	if (empty($response))

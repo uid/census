@@ -24,7 +24,6 @@ if (typeof jQuery == 'undefined') {
 }
 
 
-
 (function( window, undefined ) {
 	census = {};
 	census.DEBUG = false;
@@ -38,14 +37,24 @@ if (typeof jQuery == 'undefined') {
 	 * When the worker tries to submit the HIT, call this function to request
 	 * and display the Census task
 	 */
-	census.submit = function( questionDiv, submitForm ) {
+	census.submit = function( taskJSON, questionDiv, submitForm ) {
+		console.log(taskJSON);
+		this._taskJSON = taskJSON;
+		if (Object.prototype.toString.call(taskJSON) === '[object Array]') {
+			console.log("Please send a JSON object to census.submit()");
+			return;
+		}
+
+		// Have they sent all the relevant MTurk IDs?
+		var requiredFields = [/*"requesterId", */"workerId", "hitId", "assignmentId"];
+		for (var i=0; i<requiredFields.length; i++) {
+			if(!this._taskJSON.hasOwnProperty(requiredFields[i])) {
+				console.log("Error: please include " + requiredFields[i] + " in the task JSON that you send to the Census script");
+				return;
+			}
+		};
+
 		this.submitForm = submitForm;
-
-		$.each(["workerId", "hitId", "assignmentId", "turkSubmitTo"], function(index, value) {
-			$(submitForm).append("<input type='hidden' name='" + value + "' value='" + gup(value) + "'></input>");
-		});
-		$(submitForm).attr('action', gup("turkSubmitTo") + '/mturk/externalSubmit');
-
 
 		// The user (i.e. mechanical turk worker) is done with the real task; now comes our census question
 		if (Math.random()<10.25) 
@@ -146,8 +155,33 @@ if (typeof jQuery == 'undefined') {
 		if (census.DEBUG) {
 			return; //remove later
 		}
+		/*
+		if (sandbox == true)
+			var hiddenForm = $("<form id='censusMturkSubmit' action='http://workersandbox.mturk.com/mturk/externalSubmit'></form>");
+		else 
+			var hiddenForm = $("<form id='censusMturkSubmit' action='http://www.mturk.com/mturk/externalSubmit'></form>");
 
+		$.each(census._taskJSON, function(index, value) {
+			//hiddenForm.append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
+			$('form[name="hitForm"]').append("<input type='hidden' name='" + index + "' value='" + value + "'></input>");
+		});
 
+		alert("IDs: worker=" + gup("workerId") + " | assignment=" + gup("assignmentId") + " | hit=" + gup("hitId") + " | sumitTo=" + gup("turkSubmitTo"))
+		
+		//$('body').append(hiddenForm);
+		//hiddenForm.submit();
+		$('form[name="hitForm"]').submit();
+		*/
+
+		//$('form[name="hitForm"]').submit();
+		
+		//alert("Q: " + $('#questionDiv').serialize())
+		//alert("I: " + $('input').serialize())
+		//alert("F: " + $('form[name="censusForm"]').serialize())
+
+		
+
+		//alert(this.submitForm)
 		$(this.submitForm).submit();
 	}
 }(this));
