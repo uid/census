@@ -19,7 +19,7 @@ def create_hits():
 		mturk_url = 'mechanicalturk.amazonaws.com'
 		preview_url = 'https://mturk.com/mturk/preview?groupId='
 
-	q = ExternalQuestion(external_url="http://census.stanford.edu/client/demo.html", frame_height=800)
+	q = ExternalQuestion(external_url="https://census.stanford.edu/client/demo.html", frame_height=800)
 	conn = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, host=mturk_url)
 	keywords=['census']
 	for i in range(0, NUMBER_OF_HITS):

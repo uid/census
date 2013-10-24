@@ -6,32 +6,13 @@
 	<script src="../gup.js" type="text/javascript"></script>
 	<script src="census.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		$.fn.serializeObject = function()
-		{
-		    var o = {};
-		    var a = this.serializeArray();
-		    $.each(a, function() {
-		        if (o[this.name] !== undefined) {
-		            if (!o[this.name].push) {
-		                o[this.name] = [o[this.name]];
-		            }
-		            o[this.name].push(this.value || '');
-		        } else {
-		            o[this.name] = this.value || '';
-		        }
-		    });
-		    return o;
-		};
 
 		$(document).ready(function() {
-			$.each([/*"requesterId", */"workerId", "hitId", "assignmentId", "turkSubmitTo"], function(index, value) {
-				$('#exampleForm').append("<input type='hidden' name='" + value + "' value='" + gup(value) + "'></input>");
-			});			
+			$("#submitBtn").click( function() {
+    				event.preventDefault();
+    				$('#submitBtn').prop('disabled', 'true');
 
-			$("#exampleForm").on("submit", function(event){
-    			event.preventDefault();
-    			$('#submitBtn').prop('disabled', 'true');
-    			census.submit( $('#exampleForm').serializeObject(), '#questionDiv', '#exampleForm'  );	
+    				census.submit( '#questionDiv', '#exampleForm'  );
 			});
 		});
 	</script>

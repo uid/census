@@ -1,4 +1,4 @@
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <div id="easy_words">
 <p>Please check all the nouns, and leave the non-nouns unchecked.</p>
@@ -3556,11 +3556,67 @@
 		return true;
 	}
 	var noun_div = document.getElementById("easy_words");
-	for (var i = 0; i < 10; i++) {
+	/*
+	for (var i = 0; i < 5; i++) {
 		var input = document.createElement("input");
 		input.type = "checkbox";
 		input.name = "elem" + i;
 		var str = easy_words[getRandomInt(0, easy_words.length)];
+		var arr = str.split(" ");
+		while (arr.length > 2 || isValidPOS(arr[1]) == false) {
+			str = easy_words[getRandomInt(0, easy_words.length)];
+			arr = str.split(" ");
+		}
+		input.value = arr[1];
+		// if (input.value == "n.") input.checked = true;
+		noun_div.appendChild(input);
+		$("#easy_words").append(arr[0] + "<br>");
+	}
+	*/
+
+	//Randomly choose 5 words that include both nouns and not nouns
+	var numNouns = Math.floor(Math.random() * 4) + 1;
+	var nouns = new Array();
+	var notNouns = new Array();
+
+	for (var i =0; i < easy_words.length; i++)
+	{
+		str = easy_words[i];
+
+		if (str.search(" n.") == -1)
+			notNouns.push(str);
+		else
+			nouns.push(str);
+
+	}
+
+	var words = new Array();
+
+	for (var i = 0; i < numNouns; i++)
+	{
+		var nounWord = nouns[Math.floor(Math.random() * (nouns.length + 1))];
+		words.push(nounWord);
+	}
+	for (var i = 0; i < (5 - numNouns); i++)
+	{
+		var notNounWord = notNouns[Math.floor(Math.random() * (notNouns.length + 1))];
+		words.push(notNounWord);
+	}
+
+	function shuffle(words)
+	{ 
+    for(var j, x, i = words.length; i; j = Math.floor(Math.random() * i), x = words[--i], words[i] = words[j], words[j] = x);
+    	return words;
+	};
+
+	var words = shuffle(words);
+
+	for (var i = 0; i < 5; i++) 
+	{
+		var input = document.createElement("input");
+		input.type = "checkbox";
+		input.name = "elem" + i;
+		var str = words[i];
 		var arr = str.split(" ");
 		while (arr.length > 2 || isValidPOS(arr[1]) == false) {
 			str = easy_words[getRandomInt(0, easy_words.length)];
