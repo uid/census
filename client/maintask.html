@@ -1,0 +1,74 @@
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="jquery.validate.js"></script>
+
+<style type="text/css">
+.likert td {
+	width: 100px;
+	valign: middle;
+	text-align: center;
+}
+
+li {	
+	margin-bottom: 10px;
+}
+textarea {
+	width: 500px;
+	height: 125px;
+}
+
+label.error { 
+	display: none; 
+	color: red;
+}	
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function() 
+{
+	$("#submitBtn").click( function() 
+	{
+    	event.preventDefault();
+    	$('#submitBtn').prop('disabled', 'true');
+
+    		census.submit( '#questionDiv', '#exampleForm'  );
+	});
+});
+
+</script>
+
+<!--<div style="font-size: 20pt; color: red;">This is a preview of the survey -- accept the HIT to complete the survey.</div>
+<form id="survey" method="POST" action="http://www.mturk.com/mturk/externalSubmit"><fieldset><input type="hidden" name="assignmentId" value="" />-->
+
+<form id="exampleForm">
+
+<p>The people I interact with would help me fight an injustice.<br /><label for="bonding10" class="error">Please select your answer.</label><table cellspacing="0" cellpadding="0" border="0" class="likert"> <tbody><tr><td>Strongly disagree</td><td>&nbsp;</td><td>&nbsp;</td><td>Neutral</td><td>&nbsp;</td><td>&nbsp;</td><td>Strongly agree</td></tr><tr><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="1" />1</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="2" />2</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="3" />3</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="4" />4</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="5" />5</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="6" />6</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="7" />7</td></label></tr></tbody></table><br />
+
+<p>I often post interesting web content to public places like my IM status, my Facebook profile, or Digg.<br />
+<label for="sharing4" class="error">Please select your answer.</label><table cellspacing="0" cellpadding="0" border="0" class="likert"> 
+<tbody><tr><td>Strongly disagree</td><td>&nbsp;</td><td>&nbsp;</td><td>Neutral</td><td>&nbsp;</td><td>&nbsp;</td><td>Strongly agree</td></tr><tr><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="1" />1</td></label><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="2" />2</td></label><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="3" />3</td></label><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="4" />4</td></label><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="5" />5</td></label><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="6" />6</td></label><label for="sharing4"><td><input type="radio" id="sharing4" class="required" name="sharing4" value="7" />7</td></label></tr></tbody></table><br />
+
+<p>I am willing to spend time to support general community activities.<br />
+<label for="bridging8" class="error">Please select your answer.</label><table cellspacing="0" cellpadding="0" border="0" class="likert"> 
+<tbody><tr><td>Strongly disagree</td><td>&nbsp;</td><td>&nbsp;</td><td>Neutral</td><td>&nbsp;</td><td>&nbsp;</td><td>Strongly agree</td></tr><tr><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="1" />1</td></label><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="2" />2</td></label><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="3" />3</td></label><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="4" />4</td></label><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="5" />5</td></label><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="6" />6</td></label><label for="bridging8"><td><input type="radio" id="bridging8" class="required" name="bridging8" value="7" />7</td></label></tr></tbody></table><br />
+
+<p>I rely on tools that aggregate popular web content from many sources: for example, Google News, Google Reader or Digg.<br />
+<label for="seeking9" class="error">Please select your answer.</label><table cellspacing="0" cellpadding="0" border="0" class="likert"> 
+<tbody><tr><td>Strongly disagree</td><td>&nbsp;</td><td>&nbsp;</td><td>Neutral</td><td>&nbsp;</td><td>&nbsp;</td><td>Strongly agree</td></tr><tr><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="1" />1</td></label><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="2" />2</td></label><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="3" />3</td></label><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="4" />4</td></label><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="5" />5</td></label><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="6" />6</td></label><label for="seeking9"><td><input type="radio" id="seeking9" class="required" name="seeking9" value="7" />7</td></label></tr></tbody></table><br />
+
+<p>I follow many sources of web content for updates.<br />
+<label for="seeking3" class="error">Please select your answer.</label><table cellspacing="0" cellpadding="0" border="0" class="likert"> 
+<tbody><tr><td>Strongly disagree</td><td>&nbsp;</td><td>&nbsp;</td><td>Neutral</td><td>&nbsp;</td><td>&nbsp;</td><td>Strongly agree</td></tr><tr><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="1" />1</td></label><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="2" />2</td></label><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="3" />3</td></label><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="4" />4</td></label><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="5" />5</td></label><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="6" />6</td></label><label for="seeking3"><td><input type="radio" id="seeking3" class="required" name="seeking3" value="7" />7</td></label></tr></tbody></table><br />
+
+<!--<br /><input type="submit" value="Submit!" /></fieldset></form>-->
+
+<input id='submitBtn' type="submit" />
+
+<div id="questionDiv"></div>
+
+<div>
+	<!--<p>Current development task:</p>-->
+	<object name="devtask" type="text/html" data="development.html"></object>
+</div>
