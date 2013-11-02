@@ -1,0 +1,15 @@
+To create a new ssl cert, then self-sign it:
+openssl req -new -newkey rsa:2048 -nodes -out census_stanford_edu.csr -keyout census_stanford_edu.key -subj "/C=US/ST=California/L=Stanford Colinas/O=Stanford/OU=HCI/CN=census.stanford.edu"
+openssl x509 -req -days 365 -in census_stanford_edu.csr -signkey census_stanford_edu.key -out census_stanford_edu.crt
+
+To check if the current Apache config file is syntactically correct:
+apachectl configtest
+
+To start or stop the web server (in order to invoke changes to certs):
+/etc/init.d/httpd {start,stop}
+
+To get to the main ssl config file:
+/etc/httpd/conf.d/ssl.conf 
+
+To get to the default cert/key directories respectively:
+cd /etc/pki/tls/{certs/, private/}
