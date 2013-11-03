@@ -50,8 +50,9 @@ if (typeof jQuery == 'undefined') {
 (function( window, undefined ) {
 	census = {};
 	census.DEBUG = false;
-	census.requestCensusURL = '/censusTool/php/issue_task.php';
-	census.submitCensusURL = '/censusTool/php/handle_response.php';
+	census.requestCensusURL = 'https://census.stanford.edu/censusServer/issue_task.php';
+	census.logURL = '/censusTool/logRequest.php';
+	census.submitCensusURL = 'https://census.stanford.edu/censusServer/handle_response.php';
 	census.submitForm = null;
 
 	census._taskJSON = null;	
@@ -101,10 +102,20 @@ if (typeof jQuery == 'undefined') {
 				dataType: 'jsonp',
 				success: function(data) {
 					console.log(data);
-					if (data['success'] == 'false') {
+					if( data['success'] == 'false ') {
 						console.log("No Census task currently, or failure. Submitting original task.");
 						// TODO: Re-add this?
 						//census._submitTask();
+					}
+					else {
+						// Write to log file
+						$.ajax({
+                                			url: census.logURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId,
+                                			dataType: 'text',
+                                			success: function(data) {
+								// 
+							}
+						});
 					}
 
 					// Once the task is retrieved, insert the question into the page
