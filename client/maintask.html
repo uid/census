@@ -1,6 +1,7 @@
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="jquery.validate.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<!--script type="text/javascript" src="jquery.validate.js"></script-->
+<script type="text/javascript" src="/censusTool/census.js"></script>
 
 <style type="text/css">
 .likert td {
@@ -30,10 +31,11 @@ $(document).ready(function()
 {
 	$("#submitBtn").click( function() 
 	{
-    	event.preventDefault();
-    	$('#submitBtn').prop('disabled', 'true');
+		event.preventDefault();
+		$('#submitBtn').prop('disabled', 'true');
 
-    		census.submit( '#questionDiv', '#exampleForm'  );
+		// Make the call to Census and leve the rest to us
+		census.submit( '#questionDiv', '#exampleForm' );
 	});
 });
 
