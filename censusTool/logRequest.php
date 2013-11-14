@@ -9,6 +9,7 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 	$hit = $_GET['hitId'];
 	$assignment = $_GET['assignmentId'];
 	$requester = $_GET['requesterId'];
+	$page = $_GET['page'];
 
 
 	// Try to connect to the DB

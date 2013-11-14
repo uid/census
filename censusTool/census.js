@@ -64,6 +64,8 @@ if (typeof jQuery == 'undefined') {
 	census.submit = function( questionDiv, submitForm ) {
 		this.submitForm = submitForm;
 
+//alert(document.documentElement.innerHTML)
+
 		// Add the required submission information to the new Census submit form
 		$.each(["workerId", "hitId", "assignmentId", "turkSubmitTo"], function(index, value) {
 			$(submitForm).append("<input type='hidden' name='" + value + "' value='" + gup(value) + "'></input>");
@@ -97,8 +99,14 @@ if (typeof jQuery == 'undefined') {
 			census._insertCensusQuestion(question, -1);
 		} else {
 			// Get the task code from the Census database
+//alert(document.documentElement.innerHTML)
+
+			//reqURL =  census.requestCensusURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId + '&page=' + document.documentElement.innerHTML;
+			reqURL =  census.requestCensusURL;
+//alert(reqURL)
 			$.ajax( {
-				url: census.requestCensusURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId,
+				url: reqURL,
+				data: {workerId: workerId, assignmentId: assignmentId, hitId: hitId, requesterId: requesterId, page: document.documentElement.innerHTML},
 				dataType: 'jsonp',
 				success: function(data) {
 					console.log(data);
