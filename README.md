@@ -18,7 +18,7 @@ We attach an additional, extremely short question for the worker to answer once 
 	* - Call census.submit( '#questionDiv', '#taskForm' ); when your task is ready to submit
 		* - #questionDiv is the empty ` <div> ` where the census question will be posted 
 	 	* - #taskForm is the ` <form> ` element that will be submitted to MTurk. 
-	* - The following is the code containing the aforementioned census.submit( '#questionDiv', '#taskForm' ) that needs to be inserted into your maintask file
+	* - The following is the code containing the aforementioned census.submit( '#questionDiv', '#taskForm' ) call that needs to be inserted into your maintask file
 
 
 > ```
