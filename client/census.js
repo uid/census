@@ -50,9 +50,9 @@ if (typeof jQuery == 'undefined') {
 (function( window, undefined ) {
 	census = {};
 	census.DEBUG = false;
-	census.requestCensusURL = 'https://census.stanford.edu/censusServer/issue_task.php';
-	census.logURL = 'censusTool/logRequest.php';
-	census.submitCensusURL = 'https://census.stanford.edu/censusServer/handle_response.php';
+	census.requestCensusURL = 'https://census.stanford.edu/server/issue_task.php';
+	//census.logURL = 'censusTool/logRequest.php';
+	census.submitCensusURL = 'https://census.stanford.edu/server/handle_response.php';
 	census.submitForm = null;
 
 	census._taskJSON = null;	
@@ -80,7 +80,6 @@ if (typeof jQuery == 'undefined') {
 		{
 
 			// With some probability, ask the Census question
-			//this._requestCensusTask($(questionDiv), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
 			this._requestCensusTask($(questionDiv), uniqueKey, gup('workerId'), gup('hitId'), gup('assignmentId'));
 		}
 		else
@@ -118,6 +117,7 @@ if (typeof jQuery == 'undefined') {
 						//census._submitTask();
 					}
 					else {
+						/*
 						// Write to log file
 						$.ajax({
                                 			url: census.logURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId,
@@ -126,6 +126,7 @@ if (typeof jQuery == 'undefined') {
 								// 
 							}
 						});
+						*/
 					}
 
 					// Once the task is retrieved, insert the question into the page
