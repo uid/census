@@ -61,8 +61,9 @@ if (typeof jQuery == 'undefined') {
 	 * When the worker tries to submit the HIT, call this function to request
 	 * and display the Census task
 	 */
-	census.submit = function( questionDiv, submitForm ) {
+	census.submit = function( questionDiv, submitForm, uniqueKey ) {
 		this.submitForm = submitForm;
+
 
 //alert(document.documentElement.innerHTML)
 
@@ -75,11 +76,12 @@ if (typeof jQuery == 'undefined') {
 
 
 		// The user (i.e. mechanical turk worker) is done with the real task; 
-		if (Math.random()<10.25) 
+		if (Math.random()<0.25) 
 		{
 
 			// With some probability, ask the Census question
-			this._requestCensusTask($(questionDiv), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
+			//this._requestCensusTask($(questionDiv), gup('requesterId'), gup('workerId'), gup('hitId'), gup('assignmentId'));
+			this._requestCensusTask($(questionDiv), uniqueKey, gup('workerId'), gup('hitId'), gup('assignmentId'));
 		}
 		else
 		{
@@ -101,7 +103,6 @@ if (typeof jQuery == 'undefined') {
 			// Get the task code from the Census database
 //alert(document.documentElement.innerHTML)
 
-			//reqURL =  census.requestCensusURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId + '&page=' + document.documentElement.innerHTML;
 			reqURL =  census.requestCensusURL;
 //alert(reqURL)
 			$.ajax( {
