@@ -2,6 +2,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="censusTool/census.js"></script>
 
+
 <style type="text/css">
 .likert td {
 	width: 100px;
@@ -33,17 +34,34 @@ $(document).ready(function()
 		event.preventDefault();
 		$('#submitBtn').prop('disabled', 'true');
 
-		// Make the call to Census and leve the rest to us
-		census.submit( '#questionDiv', '#exampleForm', null );
+		// Make the call to Census and leave the rest to us
+		census.submit( '#questionDiv', '#testForm', null );
 	});
 });
+
+function gup(name) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if(results == null)
+	    return "";
+    else
+	    return unescape(results[1]);
+}
+
+if ( gup('assignmentId') == 'ASSIGNMENT_ID_NOT_AVAILABLE')
+{
+	$('#submitBtn').prop('disabled', 'true');
+	alert('Please accept hit first.');
+}
 
 </script>
 
 <!--<div style="font-size: 20pt; color: red;">This is a preview of the survey -- accept the HIT to complete the survey.</div>
 <form id="survey" method="POST" action="http://www.mturk.com/mturk/externalSubmit"><fieldset><input type="hidden" name="assignmentId" value="" />-->
 
-<form id="exampleForm">
+<form id="testForm">
 
 <p>The people I interact with would help me fight an injustice.<br /><label for="bonding10" class="error">Please select your answer.</label><table cellspacing="0" cellpadding="0" border="0" class="likert"> <tbody><tr><td>Strongly disagree</td><td>&nbsp;</td><td>&nbsp;</td><td>Neutral</td><td>&nbsp;</td><td>&nbsp;</td><td>Strongly agree</td></tr><tr><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="1" />1</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="2" />2</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="3" />3</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="4" />4</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="5" />5</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="6" />6</td></label><label for="bonding10"><td><input type="radio" id="bonding10" class="required" name="bonding10" value="7" />7</td></label></tr></tbody></table><br />
 
