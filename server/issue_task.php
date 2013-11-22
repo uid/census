@@ -31,8 +31,9 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 	// If the DB connection was made correctly...
 	if($dbh) {
 		//$sth = $dbh->prepare ("SELECT tasks.id,summary,content FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid AND workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
-		$sth = $dbh->prepare ("SELECT tasks.id,summary,content FROM tasks ORDER BY RAND() LIMIT 1");
-		$sth->execute(array(':worker'=>$worker, ':hit'=>$hit));
+		//$sth = $dbh->prepare ("SELECT tasks.id,summary,content FROM tasks ORDER BY RAND() LIMIT 1");
+		$sth = $dbh->prepare ("SELECT id,summary,content FROM `tasks` WHERE id NOT IN (SELECT taskid FROM requests WHERE workerId=:worker AND id IN (SELECT requestid FROM responses WHERE timestamp BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE()))");
+		$sth->execute(array(':worker'=>$worker));
 			$row = $sth->fetch(PDO::FETCH_ASSOC);
 
 		if( $row['id'] == null ) {
