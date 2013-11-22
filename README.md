@@ -26,7 +26,7 @@ $(document).ready(function()  //Called when the document is ready to be submitte
 {
 	$("#submitBtn").click( function()  //Function called when submit button is pressed
 	{
-    		event.preventDefault();  //Prevents default submit from occurring
+    		event.preventDefault();  //Prevents default response of pressing the submit button
     		$('#submitBtn').prop('disabled', 'true');  //Disables submit button
     		census.submit( '#questionDiv', '#taskForm' );  //Submits data from tasks to census server
 	});
