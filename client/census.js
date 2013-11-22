@@ -111,10 +111,9 @@ if (typeof jQuery == 'undefined') {
 				dataType: 'jsonp',
 				success: function(data) {
 					console.log(data);
-					if( data['success'] == 'false ') {
+					if( data['success'] == false) {
 						console.log("No Census task currently, or failure. Submitting original task.");
-						// TODO: Re-add this?
-						//census._submitTask();
+						census._submitTask();
 					}
 					else {
 						/*
