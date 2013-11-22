@@ -29,6 +29,11 @@ label.error {
 
 $(document).ready(function() 
 {
+        if ( gup('assignmentId') == 'ASSIGNMENT_ID_NOT_AVAILABLE')
+        {
+	        $('#submitBtn').prop('disabled', 'true').prop('value', 'Please accept HIT first');
+        }
+
 	$("#submitBtn").click( function() 
 	{
 		event.preventDefault();
@@ -48,12 +53,6 @@ function gup(name) {
 	    return "";
     else
 	    return unescape(results[1]);
-}
-
-if ( gup('assignmentId') == 'ASSIGNMENT_ID_NOT_AVAILABLE')
-{
-	$('#submitBtn').prop('disabled', 'true');
-	alert('Please accept hit first.');
 }
 
 </script>
