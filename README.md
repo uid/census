@@ -1,9 +1,7 @@
 #Census
 
-We are a group of researchers at Stanford, MIT, U. Rochester, CMU, U. Michigan, UT Austin,
-and elsewhere trying to learn more about the demographic and cognitive information regarding
-the workers on Amazon's Mechanical Turks. Our package allows you to post tasks on Mechanical
-Turk and then assess the demographics and cognitive skill of the workers that do your tasks.
+Census allows you to post tasks on Mechanical Turk and then assess the demographics and
+cognitive skill of the workers that do your tasks.
 
 
 
@@ -41,3 +39,12 @@ $(document).ready(function()  //Called when the document is ready to be submitte
 
 	
 * DO NOT call `census.submit()` until you’re ready for your task to be submitted to MTurk (as the form will be submitted to MTurk as-is once the census task is complete).
+
+
+# About Us
+
+We are a group of researchers at Stanford, MIT, U. Rochester, CMU, U. Michigan, UT Austin,
+and elsewhere trying to learn more about the demographic and cognitive information regarding
+the workers on Amazon's Mechanical Turks.
+
+
