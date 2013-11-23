@@ -1,12 +1,7 @@
-#Census
+#Brief Overview - How Census Works
 
 Census allows you to post tasks on Mechanical Turk and then assess the demographics and
 cognitive skill of the workers that do your tasks.
-
-
-
-#Brief Overview - How It Works
-
 We attach an additional, extremely short question for the worker to answer once they have
 completed your task. The results of these additional census questions regarding the workers
 answering your questions are aggregated and provided for you to view through our webpage:
