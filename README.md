@@ -18,7 +18,7 @@ answering your questions are aggregated and provided for you to view through our
 		* `#questionDiv` is the empty `<div>` where the census question will be posted 
 	 	* `#taskForm` is your `<form>` element for your HIT --- whatever you want submitted to MTurk.
 	 	* `unique_key` is the secret key that Census gives you, and that you can use to find the census results for your HIT later (COMING SOON)
-	* The following is demo code that you can use in your HIT. Only `census.submit()` is required, but the rest may be helpful. This code intercept the original form submission, disable the form submission button, and call `census.submit()` to retrieve a Census task, display it and then submit the HIT:
+	* The following is demo code that you can use in your HIT. Only `census.submit()` is required, but the rest may be helpful. This code intercepts the original form submission, disables the original form submission button, and calls `census.submit()` to retrieve a Census task, display it and then submit the HIT:
 
 
 > ```
