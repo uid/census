@@ -2,10 +2,10 @@ from boto.mturk.connection import MTurkConnection
 from boto.mturk.question import ExternalQuestion
 from awskeys import AWS_ACCESS_KEY, AWS_SECRET_KEY
 
-SANDBOX = True
+SANDBOX = False
 
-NUMBER_OF_HITS = 1
-NUMBER_OF_ASSIGNMENTS = 1
+NUMBER_OF_HITS = 3
+NUMBER_OF_ASSIGNMENTS = 50
 LIFETIME = 60 * 60 * 24
 TITLE = 'Five question survey about the web and your community'
 EXPLANATION = 'We are investigating how much the web and your community interact. This is a five-question survey, all agree/disagree questions.'

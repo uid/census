@@ -1,0 +1,3 @@
+# Get these from http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkGettingStartedGuide/SetUp.html
+AWS_ACCESS_KEY = 'AKIAI4VDXHQDWUGRLH5A'
+AWS_SECRET_KEY = '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'
