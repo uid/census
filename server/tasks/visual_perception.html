@@ -1,0 +1,54 @@
+<h3>Visual perception test</h3>
+<p>Estimate the percentage the smaller rectangle below (in blue) is of the larger rectangle (in black). For example, if the blue rectangle were half the size of the black rectangle, then the correct answer would be 50%. Do not include the percent sign in your response.</p>
+
+<p>Percentage of smaller rectangle to larger rectangle: <input type="text" name="percent">%</p>
+<canvas id="test1" width="300" height="400"></canvas>
+
+<script>
+  var ctx = document.getElementById("test1").getContext("2d");
+  var height1 = Math.round(Math.random() * 100) / 100;
+  var height2 = Math.round(Math.random() * 100) / 100;
+  
+  ctx.beginPath();
+  if (height1 < height2) ctx.strokeStyle="blue";
+  ctx.lineWidth = "3";
+  ctx.rect(0,0, 50, 200*height1);
+  ctx.stroke();
+  ctx.strokeStyle="black";
+  
+  ctx.beginPath();
+  if (height2 < height1) ctx.strokeStyle="blue";
+  ctx.lineWidth = "3";
+  ctx.rect(0, 200*height1+1, 50, 200*height2);
+  ctx.stroke();
+
+  if (height1 < height2) {
+    soln = height1/height2;
+  } else {
+    soln = height2/height1;
+  }
+
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}  
+
+$('#censusForm').submit(function(event) {
+  var smaller = Math.min(height1, height2);
+  var larger = Math.max(height1, height2);
+  var correct = soln * 100;
+
+  var guess = $('form[name="censusForm"] input[name=percent]').val();
+  if (!(isNumber(guess) && parseInt(guess) > 0 && parseInt(guess) <= 100)) {
+    $('form[name="censusForm"]').append("<div>Please enter an integer between 1 and 100</div>");
+    event.preventDefault();
+    return false;
+  }
+
+  var error = Math.round(correct - parseInt(guess)) / 100;
+
+  var smaller = $("<input type='hidden' name='smaller' value=" + smaller + "/>");
+  var larger = $("<input type='hidden' name='larger' value=" + larger + "/>");
+  var hiddenForm = $("<input type='hidden' name='response' value=" + error + "/>");
+  $('#censusForm').append(smaller).append(larger).append(hiddenForm);
+});
+</script>

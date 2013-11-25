@@ -1,0 +1,21 @@
+<p>How old are you?</p>
+
+<select name='response'>
+  <option>Choose one...</option>
+  <option>Under 20</option>
+  <option>20-29</option>
+  <option>30-39</option>
+  <option>40-49</option>
+  <option>50-59</option>
+  <option>60 or Over</option>
+</select>
+
+<script>
+  $('#censusForm').submit(function(event) {
+    var choice = $('form[name="censusForm"] select').val();
+    if (choice == "Choose one...") {
+      $('form[name="censusForm"]').append("<div>Please choose an age range.</div>");
+      event.preventDefault();
+    }
+  });
+</script>

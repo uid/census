@@ -1,0 +1,20 @@
+<h3>Word Sense Disambiguation Benchmark</h3>
+
+<p>Please choose the most appropriate sense of the word <b><font color="red">president</font></b> in the following context. 
+
+<p> Polls show wide, generalized support for some vague concept of service, but the bill now under discussion lacks any passionate public backing . Nonetheless, Senate Democrats are organizing a roll of supporting "associations,"societies"and "councils,"some of which may hope to receive the paid "volunteers ." So far, the <b><font color="red"> president </font></b> seems ill-disposed to substitute any of the omnibus for his own free-standing proposal to endow a "Points of Light" foundation with $ 25 million to inform citizens of all ages and exhort them to genuine volunteerism . However, even this admirable plan could become objectionable if the White House gives in to congressional Democratic pressure to add to the scope of the president's initiative or to involve the independent foundation in "brokering"federal funds for volunteer projects . There's no need for such concessions . <p></p> 
+
+<p>
+<input type="radio" name="response" value="sense1"> <b>Meaning 1</b>: president, chair, chairperson, chairman, chairwoman, proxy -- (the executive officer of a firm, corporation, or university). <br>
+<input type="radio" name="response" value="sense2"> <b>Meaning 2</b>: head of a country (other than the U.S.) -- (the chief executive of a republic).<br>
+<input type="radio" name="response" value="sense3"> <b>Meaning 3</b>: head of the U.S., President of the United States, United States President, President, Chief Executive -- (the person who holds the office of head of state of the United States government).
+</p>
+
+<script>
+  $('#censusForm').submit(function() {    
+    if ($('form[name="censusForm"] input:checked').length == 0) {
+      $('form[name="censusForm"]').append("<div>Please choose a word sense.</div>");
+      event.preventDefault();
+    }
+  });
+</script>

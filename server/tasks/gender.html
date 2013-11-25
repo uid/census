@@ -1,0 +1,14 @@
+<h3>Gender</h3>
+
+<p>Please select your gender.</p>
+<select name='response'><option>Choose one...</option><option>Female</option><option>Male</option></select>
+
+<script>
+  $('#censusForm').submit(function(event) {
+    var choice = $('form[name="censusForm"] select').val();
+    if (choice == "Choose one...") {
+      $('form[name="censusForm"]').append("<div>Please choose a gender.</div>");
+      event.preventDefault();
+    }
+  });
+</script>

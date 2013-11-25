@@ -1,0 +1,32 @@
+<h3>Tagging benchmark</h3>
+<p><b>Please tag the image below. Provide 3 different tags for the image.</b><br>
+<p>Guidelines:<br>
+  <ul>
+  <li>Each tag must be a single word.</li>
+  <li>No tag can be longer than 25 characters.</li>
+  <li>The tags must describe the image, the contents of the image, or some relevant context.</li>
+  </ul>
+  <br>
+  <img src="https://s3.amazonaws.com/mturk/samples/image_tagging/image_0001.jpg"/>
+
+<br>
+  Tag 1:&nbsp; <input type="textarea" name="tag1" cols="20" rows="1"></textarea><br>
+  Tag 2:&nbsp;<input type="textarea" name="tag2" cols="20" rows="1"></textarea><br>
+  Tag 3:&nbsp;<input type="textarea" name="tag3" cols="20" rows="1"></textarea><br>
+
+
+<script>
+  $('#censusForm').submit(function() {
+    var tags = $('form[name="censusForm"] input[type="textarea"]').map(function() { return $(this).val() });
+    var filtered = $.grep(tags, function (n, i) { return n != ''});
+
+    if (filtered.length < 3) {
+      $('form[name="censusForm"]').append("<div>Please write three tags.</div>");
+      event.preventDefault();
+    } else {
+      var allTags = filtered.join(",");
+      var hiddenForm = $("<input type='hidden' name='response' value=" + allTags + "/>");
+      $('#censusForm').append(hiddenForm);
+    }
+  });
+</script>

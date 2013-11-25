@@ -32,7 +32,7 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 	if($dbh) {
 		//$sth = $dbh->prepare ("SELECT tasks.id,summary,content FROM tasks LEFT OUTER JOIN requests ON tasks.id=taskid AND workerid=:worker AND hitid=:hit ORDER BY RAND() LIMIT 1");
 		//$sth = $dbh->prepare ("SELECT tasks.id,summary,content FROM tasks ORDER BY RAND() LIMIT 1");
-		$sth = $dbh->prepare ("SELECT id,summary,content FROM `tasks` WHERE id NOT IN (SELECT taskid FROM requests WHERE workerId=:worker AND id IN (SELECT requestid FROM responses WHERE timestamp BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE())) ORDER BY RAND()");
+		$sth = $dbh->prepare ("SELECT id,summary FROM `tasks` WHERE id NOT IN (SELECT taskid FROM requests WHERE workerId=:worker AND id IN (SELECT requestid FROM responses WHERE timestamp BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE())) ORDER BY RAND()");
 		$sth->execute(array(':worker'=>$worker));
 			$row = $sth->fetch(PDO::FETCH_ASSOC);
 
@@ -64,10 +64,13 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
                                 	':data'=>serialize($_SERVER), ':task'=>$row['id'], ':country'=>$country, ':url'=>$_SERVER["HTTP_REFERER"], ':page'=>$page));
 			}
 
+			// load the source file
+			$content = file_get_contents('tasks/' . $row["summary"] . '.html');
+
 			$data = array(
 		  		"success"=>true,
 		  		"summary"=>$row["summary"],
-		  		"data"=>$row["content"],
+		  		"data"=>$content,
 		  		"request_id"=>$dbh->lastInsertId()
 			);
 		}
