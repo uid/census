@@ -12,7 +12,13 @@ answering your questions are aggregated and provided for you to view through our
 
 1. Pull the `/client` folder off GitHub. 
 
-2. Add the census call to your task as follows:
+2. Make sure that you've included `census.js` (in the `/client` folder) as well as jQuery in your HIT:
+> ```
+<script src="census.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+```
+
+3. Add the census call to your task as follows:
 
 	* Call `census.submit( '#questionDiv', '#taskForm', 'unique_key' );` when your task is ready to submit
 		* `#questionDiv` is the empty `<div>` where the census question will be posted 
