@@ -4,11 +4,13 @@
 <select name='response'><option>Choose one...</option><option>Female</option><option>Male</option></select>
 
 <script>
-  $('#censusForm').submit(function(event) {
+  function validateCensusForm() { 
     var choice = $('form[name="censusForm"] select').val();
     if (choice == "Choose one...") {
       $('form[name="censusForm"]').append("<div>Please choose a gender.</div>");
-      event.preventDefault();
+      return false;
     }
-  });
+
+    return true;
+  }
 </script>

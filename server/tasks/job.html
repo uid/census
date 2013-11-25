@@ -4822,11 +4822,13 @@ function initializeAutocomplete() {
 </div>
 
 <script>
-  $('#censusForm').submit(function(event) {
+  function validateCensusTask() {
     var choice = $('form[name="censusForm"] input[name="response"]').val();
     if (choice == "") {
       $('form[name="censusForm"]').append("<div>Please choose an occupation.</div>");
-      event.preventDefault();
+      return false;
     }
-  });
+
+    return true;
+  }
 </script>

@@ -158,9 +158,13 @@ if (typeof jQuery == 'undefined') {
 		// Catch the submit button press from the worker and first log all of their responses
 		$("#censusForm").on("submit", function(event){
     			event.preventDefault();
-    			var response = $('form[name="censusForm"]').serialize();
-    			console.log(response);
-    			census._submitCensusResponse(response);
+
+			// validate the census form if necessary
+			if (typeof validateCensusForm != 'function' || validateCensusForm()) {
+			    var response = $('form[name="censusForm"]').serialize();
+    			    console.log(response);
+			    census._submitCensusResponse(response);
+			}
 		}).fadeIn();
 	}
 

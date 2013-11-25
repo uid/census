@@ -40,7 +40,7 @@
 
 
 <script>
-  $('#censusForm').submit(function(event) {
+  function validateCensusForm {
     var checked = $('form[name="censusForm"] input[name="response"]:checkbox:checked');
     var allEthnicities = [];
     checked.each(function() {
@@ -55,7 +55,9 @@
 
     if (checked.length == 0) {
       $('form[name="censusForm"]').append("<div>Please choose an ethnicity.</div>");
-      event.preventDefault();
+      return false;
     }  
-  });
+
+    return true;
+  }
 </script>

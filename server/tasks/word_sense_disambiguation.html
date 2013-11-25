@@ -11,10 +11,12 @@
 </p>
 
 <script>
-  $('#censusForm').submit(function() {    
+  function validateCensusTask() {
     if ($('form[name="censusForm"] input:checked').length == 0) {
       $('form[name="censusForm"]').append("<div>Please choose a word sense.</div>");
-      event.preventDefault();
+      return false;
     }
-  });
+
+    return true;
+  }
 </script>

@@ -16,17 +16,18 @@
 
 
 <script>
-  $('#censusForm').submit(function() {
+  function validateCensusTask() {
     var tags = $('form[name="censusForm"] input[type="textarea"]').map(function() { return $(this).val() });
     var filtered = $.grep(tags, function (n, i) { return n != ''});
 
     if (filtered.length < 3) {
       $('form[name="censusForm"]').append("<div>Please write three tags.</div>");
-      event.preventDefault();
+      return false;
     } else {
       var allTags = filtered.join(",");
       var hiddenForm = $("<input type='hidden' name='response' value=" + allTags + "/>");
       $('#censusForm').append(hiddenForm);
+      return true;
     }
   });
 </script>

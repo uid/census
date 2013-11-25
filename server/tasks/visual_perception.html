@@ -32,7 +32,7 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }  
 
-$('#censusForm').submit(function(event) {
+function validateCensusTask() {
   var smaller = Math.min(height1, height2);
   var larger = Math.max(height1, height2);
   var correct = soln * 100;
@@ -40,7 +40,6 @@ $('#censusForm').submit(function(event) {
   var guess = $('form[name="censusForm"] input[name=percent]').val();
   if (!(isNumber(guess) && parseInt(guess) > 0 && parseInt(guess) <= 100)) {
     $('form[name="censusForm"]').append("<div>Please enter an integer between 1 and 100</div>");
-    event.preventDefault();
     return false;
   }
 
@@ -50,5 +49,6 @@ $('#censusForm').submit(function(event) {
   var larger = $("<input type='hidden' name='larger' value=" + larger + "/>");
   var hiddenForm = $("<input type='hidden' name='response' value=" + error + "/>");
   $('#censusForm').append(smaller).append(larger).append(hiddenForm);
-});
+  return true;
+}
 </script>

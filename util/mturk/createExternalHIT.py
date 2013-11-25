@@ -7,6 +7,7 @@ SANDBOX = False
 NUMBER_OF_HITS = 3
 NUMBER_OF_ASSIGNMENTS = 50
 LIFETIME = 60 * 60 * 24
+REWARD = 0.04
 TITLE = 'Five question survey about the web and your community'
 EXPLANATION = 'We are investigating how much the web and your community interact. This is a five-question survey, all agree/disagree questions.'
 
@@ -22,7 +23,7 @@ def create_hits():
 	conn = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY, host=mturk_url)
 	keywords=['census']
 	for i in range(0, NUMBER_OF_HITS):
-		create_hit_rs = conn.create_hit(question=q, lifetime=LIFETIME,max_assignments=NUMBER_OF_ASSIGNMENTS,title=TITLE, keywords=keywords,reward = 0.05, duration=60*6,approval_delay=60*60, annotation=EXPLANATION)
+		create_hit_rs = conn.create_hit(question=q, lifetime=LIFETIME,max_assignments=NUMBER_OF_ASSIGNMENTS,title=TITLE, keywords=keywords,reward = REWARD, duration=60*6,approval_delay=60*60, annotation=EXPLANATION)
 		print(preview_url + create_hit_rs[0].HITTypeId)
     
 if __name__ == "__main__":
