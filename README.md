@@ -1,4 +1,4 @@
-#Brief Overview - How Census Works
+#Mechanical Turk Census
 
 Census allows you to post tasks on Mechanical Turk and then assess the demographics and
 cognitive skill of the workers that do your tasks.
