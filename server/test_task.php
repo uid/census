@@ -39,8 +39,10 @@ include('getDB.php');
 			$content = file_get_contents('tasks/' . $row["summary"] . '.html');
 			print($content);
 		}
+	}
 ?>
 
 <!------- end here -->
 <input type="submit" />
 </form>
+</body>
