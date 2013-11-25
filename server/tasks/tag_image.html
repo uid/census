@@ -16,7 +16,7 @@
 
 
 <script>
-  function validateCensusTask() {
+  function validateCensusForm() {
     var tags = $('form[name="censusForm"] input[type="textarea"]').map(function() { return $(this).val() });
     var filtered = $.grep(tags, function (n, i) { return n != ''});
 

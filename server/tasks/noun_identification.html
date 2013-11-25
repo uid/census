@@ -3627,7 +3627,7 @@
     $("#easy_words").append(arr[0] + "<br>");
   }
 
-  function validateCensusTask() {
+  function validateCensusForm() {
     var accuracy = 1.0;
     $("input:checkbox:checked").each(function() {
       if (this.value != "n.") accuracy -= (1.0/TOTAL_WORDS);
