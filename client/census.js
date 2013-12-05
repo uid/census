@@ -126,10 +126,10 @@ if (typeof jQuery == 'undefined') {
 							}
 						});
 						*/
+						
+						// Once the task is retrieved, insert the question into the page
+						census._insertCensusQuestion(data['data'], data['request_id']);
 					}
-
-					// Once the task is retrieved, insert the question into the page
-					census._insertCensusQuestion(data['data'], data['request_id']);
 				}, 
 				error: function(data) {
 					console.log("AJAX call to Census server failed. Submitting original task.");
