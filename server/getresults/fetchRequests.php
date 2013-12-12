@@ -32,12 +32,14 @@ include('../getDB.php');
 
 
 		//	Enter data from user into the MySQL database
-		$sth = $dbh->prepare('SELECT * FROM responses WHERE requestid IN (SELECT id FROM requests WHERE authkey=:key)');
+		//$sth = $dbh->prepare('SELECT * FROM responses WHERE requestid IN (SELECT id FROM requests WHERE authkey=:key) ORDER BY requests.taskid'); // OLD VERSION
+		$sth = $dbh->prepare('SELECT * FROM responses JOIN requests on requestid=requests.id WHERE authkey="vlOmU7g3amebJnL" ORDER BY taskid, workerid');
+		//$sth = $dbh->prepare('SELECT * FROM responses JOIN requests on requestid=requests.id WHERE authkey="vlOmU7g3amebJnL" ORDER BY workerid, taskid');
 		$sth->execute(array(':key'=>$inKey));
 
 		$retStr = "";
 		while( $row = $sth->fetch(PDO::FETCH_ASSOC) ) {
-			$retStr = $retStr . $row["value"] . "," . $row["timestamp"] . "\n";
+			$retStr = $retStr . $row["workerid"] . "," . $row["value"] . "," . $row["timestamp"] . "\n";
 
 		}
 

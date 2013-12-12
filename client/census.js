@@ -76,7 +76,7 @@ if (typeof jQuery == 'undefined') {
 
 
 		// The user (i.e. mechanical turk worker) is done with the real task; 
-		if( Math.random() < 10.25 ) {
+		if( Math.random() < 0.5 ) {
 			// With some probability, ask the Census question
 			this._requestCensusTask($(questionDiv), 'req', gup('workerId'), gup('hitId'), gup('assignmentId'), uniqueKey);
 		}
