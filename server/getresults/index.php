@@ -4,8 +4,10 @@
 <script src="gup.js" type="text/javascript"></script>
 <script src="view.js" type="text/javascript"></script>
 <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="../bootstrap.css" />
 
 <body>
+<div id="outer-wrapper">
 
 	<div id="header">
 		Census Results Viewer
@@ -27,7 +29,7 @@
 		<div id="dataField-label">Your results: </div>
 		<div id="dataField-val"></div>
 	</div>
-
+</div>
 
 </body>
 

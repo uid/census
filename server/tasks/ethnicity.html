@@ -48,9 +48,10 @@
     });
 
     if ($('form[name="censusForm"] input[name="other"]:checkbox:checked').length > 0) {
-      allEthnicities.push($('form[name="censusForm"] input[name="otherText"]').val());
+      allEthnicities.push($('form[name="censusForm"] input[name="otherText"]').val().replace(/[\s+]/g, "_"));
+	alert($('form[name="censusForm"] input[name="otherText"]').val().replace(/[\s+]/g, "_"));
     }
-    var hiddenForm = $("<input type='hidden' name='response' value=" + allEthnicities.join(',') + "/>");
+    var hiddenForm = $("<input type='hidden' name='response' value=" + allEthnicities.join(',') + ">");
     $('#censusForm').append(hiddenForm);
 
     if (checked.length == 0) {

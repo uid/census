@@ -3,9 +3,11 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="start.js" type="text/javascript"></script>
 <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="../bootstrap.css" />
 
 <body>
 
+<div id="outer-wrapper">
 	<div id="header">
 		Get started with Census!
 	</div>
@@ -37,6 +39,7 @@
 		</div>
 	</div>
 
+</div>
 </body>
 
 </html>

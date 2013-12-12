@@ -21,11 +21,11 @@ function idIsUsed($inID, $dbh) {
 	// Assumes DBH is valid
 
 	// Check if the key is already in the MySQL database
-	$sth = $dbh->prepare('SELECT FROM keytable WHERE keyval=:key');
+	$sth = $dbh->prepare('SELECT COUNT(*) as num FROM keytable WHERE keyval=:key');
 	$sth->execute(array(':key'=>$inID));
 
-	$row = $sth->fetch(PDO::FETCH_ASSOC);
-	if( $row["keytable"] == null) {
+	$row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT);
+	if( $row["num"] == 0 ) {
 		return false;
 	}
 

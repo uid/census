@@ -1,0 +1,36 @@
+body {
+  background: #eee;
+}
+
+#outer-wrapper {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.pwd {
+  margin-bottom: 20px;
+}
+
+#getBtn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#dataField {
+  margin-top: 10px;
+}
+
+#header {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#container {
+  font-family: arial;
+}
+
+#dataField-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}

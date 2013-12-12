@@ -19,11 +19,12 @@ include('../getDB.php');
 		$inKey = $_REQUEST["key"];
 		$inPass = $_REQUEST["pwd"];
 
-		//	Enter data from user into the MySQL database
-		$sth = $dbh->prepare('SELECT COUNT(*) AS num FROM keytable WHERE keyval=:key AND privpass=:pass)');
+		// Check if the key is already in the MySQL database
+		$sth = $dbh->prepare('SELECT COUNT(*) AS num FROM keytable WHERE keyval=:key AND privpass=:pass');
 		$sth->execute(array(':key'=>$inKey, ':pass'=>md5($inPass)));
-		$row = $sth->fetch(PDO::FETCH_ASSOC);
-//echo($row["num"] . " <<>> " . md5($inPass));
+
+		//$row = $sth->fetch(PDO::FETCH_ASSOC);
+		$row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT);
 		if( $row["num"] == 0 ) {
 			echo("Invalid-Password");
 			return -1;
@@ -31,9 +32,8 @@ include('../getDB.php');
 
 
 		//	Enter data from user into the MySQL database
-		$sth = $dbh->prepare('SELECT * FROM responses WHERE requestid IN (SELECT id FROM requests WHERE authkey IS :key)');
+		$sth = $dbh->prepare('SELECT * FROM responses WHERE requestid IN (SELECT id FROM requests WHERE authkey=:key)');
 		$sth->execute(array(':key'=>$inKey));
-
 
 		$retStr = "";
 		while( $row = $sth->fetch(PDO::FETCH_ASSOC) ) {

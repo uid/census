@@ -21,7 +21,7 @@ $(document).ready( function() {
 				url: keyURL,
 				type: "POST",
 				dataType: 'text',
-				data: {'pwd': $('#passField').val()},
+				data: {'pwd': $('#pass-field').val().trim()},
 				success: function(data) {
 					$('#pass').addClass('disabled');
 					$('#pass-field').attr('disabled', 'disabled');
