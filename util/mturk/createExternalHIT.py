@@ -2,7 +2,7 @@ from boto.mturk.connection import MTurkConnection
 from boto.mturk.question import ExternalQuestion
 from awskeys import AWS_ACCESS_KEY, AWS_SECRET_KEY
 
-SANDBOX = False
+SANDBOX = True
 
 NUMBER_OF_HITS = 3
 NUMBER_OF_ASSIGNMENTS = 50

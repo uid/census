@@ -6,7 +6,7 @@ ini_set("display_errors", 1);
 include('../getDB.php');
 
 function gen_id($length) {
-	$charset='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_+-')
+	$charset='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_+-';
 
 	$str = '';
 	$count = strlen($charset);
@@ -21,30 +21,28 @@ function idIsUsed($inID, $dbh) {
 	// Assumes DBH is valid
 
 	// Check if the key is already in the MySQL database
-	$sth = $dbh->prepare('SELECT FROM keytable WHERE keyval=:key');
-	$sth->execute(array(':requester'=>$inID));
+	$sth = $dbh->prepare('SELECT COUNT(*) as num FROM keytable WHERE keyval=:key');
+	$sth->execute(array(':key'=>$inID));
 
-	$row = $sth->fetch(PDO::FETCH_ASSOC);
-	if( $row["keytable"] == null) {
+	$row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT);
+	if( $row["num"] == 0 ) {
 		return false;
 	}
 
 	return true;
 }
 
-function logID($inID, $dbh) {
+function log_id($inID, $inPass, $dbh) {
 	// Assumes DBH is valid
 
 	// Enter new key into the MySQL database
-	$sth = $dbh->prepare('INSERT INTO keytable (keyval, timestamp) VALUES (:key, CURRENT_TIMESTAMP)');
-	//$sth->execute(array(':requester'=>$requester, ':worker'=>$worker, ':hit'=>$hit, ':assignment'=>$assignment));
-	$sth->execute(array(':requester'=>$inID));
+	$sth = $dbh->prepare('INSERT INTO keytable (keyval, privpass) VALUES (:key, :pass)');
+	$sth->execute(array(':key'=>$inID, ':pass'=>md5($inPass)));
 
 }
 
 
 // ========= MAIN ======= //
-
 
 // Try to connect to the DB
 try {
@@ -57,15 +55,19 @@ try {
 
 // If the DB connection was made correctly...
 if($dbh) {
-	$key = gen_id(15);
+	$pass = NULL;
+	if( isset($_REQUEST["pwd"]) ) {
+		$pass = $_REQUEST["pwd"];
+	}
 
+	$key = gen_id(15);
 	while( idIsUsed($key, $dbh) ) {
 		// Find a new key
 		$key = gen_id(15);
 	}
 
 	// Log the new key
-	log_id($key, $dbh);
+	log_id($key, $pass, $dbh);
 
 	echo($key);
 }
