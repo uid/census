@@ -76,14 +76,11 @@ if (typeof jQuery == 'undefined') {
 
 
 		// The user (i.e. mechanical turk worker) is done with the real task; 
-		if (Math.random()<10.25) 
-		{
-
+		if( Math.random() < 10.25 ) {
 			// With some probability, ask the Census question
-			this._requestCensusTask($(questionDiv), uniqueKey, gup('workerId'), gup('hitId'), gup('assignmentId'));
+			this._requestCensusTask($(questionDiv), 'req', gup('workerId'), gup('hitId'), gup('assignmentId'), uniqueKey);
 		}
-		else
-		{
+		else {
 			// Otherwise, just submit normally
 			this._submitTask();
 		}
@@ -93,7 +90,7 @@ if (typeof jQuery == 'undefined') {
 	 * Makes an AJAX call to the Census server to retrieve a task. Displays the task in
 	 * questionDiv.
 	 */
-	census._requestCensusTask = function(questionDiv, requesterId, workerId, hitId, assignmentId) {
+	census._requestCensusTask = function(questionDiv, requesterId, workerId, hitId, assignmentId, uniqueKey) {
 		if (census.DEBUG) {
 			var question = "<div><div>In metric tons, how much wood would a woodchuck chuck if a woodchuck could chuck Woody Allen?</div>" +
 				"<div><input type='text' name='woodchuck'></input></div></div>";
@@ -107,7 +104,7 @@ if (typeof jQuery == 'undefined') {
 			$.ajax( {
 				url: reqURL,
 				//data: {workerId: workerId, assignmentId: assignmentId, hitId: hitId, requesterId: requesterId, page: document.documentElement.innerHTML},
-				data: {workerId: workerId, assignmentId: assignmentId, hitId: hitId, requesterId: requesterId},
+				data: {workerId: workerId, assignmentId: assignmentId, hitId: hitId, requesterId: requesterId, key: uniqueKey},
 				dataType: 'jsonp',
 				success: function(data) {
 					console.log(data);
@@ -116,17 +113,6 @@ if (typeof jQuery == 'undefined') {
 						census._submitTask();
 					}
 					else {
-						/*
-						// Write to log file
-						$.ajax({
-                                			url: census.logURL + '?workerId=' + workerId + '&assignmentId=' + assignmentId + '&hitId=' + hitId + '&requesterId=' + requesterId,
-                                			dataType: 'text',
-                                			success: function(data) {
-								// 
-							}
-						});
-						*/
-						
 						// Once the task is retrieved, insert the question into the page
 						census._insertCensusQuestion(data['data'], data['request_id']);
 					}

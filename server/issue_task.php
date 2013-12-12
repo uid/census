@@ -14,11 +14,12 @@ $country = $locations['country_name'];
 
 
 // Make sure a session is defined
-if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_REQUEST['hitId']) && isset($_REQUEST['requesterId'])  ) {
+if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_REQUEST['hitId']) && isset($_REQUEST['requesterId']) &&isset($_REQUEST['key'])  ) {
 	$worker = $_REQUEST['workerId'];
 	$hit = $_REQUEST['hitId'];
 	$assignment = $_REQUEST['assignmentId'];
 	$requester = $_REQUEST['requesterId'];
+	$key = $_REQUEST['key'];
 
 	// Try to connect to the DB
 	try {
@@ -44,22 +45,22 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 		} else {
 			//	Enter data from user into the MySQL database
 			if( !isset($_REQUEST["page"]) ) {
-                        	$query = ('INSERT INTO requests (requesterid, workerid, hitid, assignmentid, ip, mac, data, browser, taskid, country, url) 
-                        	        VALUES (:requester, :worker, :hit, :assignment, :ip, "", :data, "", :task, :country, :url)');
+                        	$query = ('INSERT INTO requests (requesterid, workerid, hitid, assignmentid, ip, mac, data, browser, taskid, country, url, authkey) 
+                        	        VALUES (:requester, :worker, :hit, :assignment, :ip, "", :data, "", :task, :country, :url, :key)');
 
                         	$sth = $dbh->prepare($query);
 
                         	$sth->execute(array(':requester'=>$requester, ':worker'=>$worker, ':hit'=>$hit, ':assignment'=>$assignment, ':ip'=>$_SERVER['REMOTE_ADDR'],
-                                	':data'=>serialize($_SERVER), ':task'=>$row['id'], ':country'=>$country, ':url'=>$_SERVER["HTTP_REFERER"]));
+                                	':data'=>serialize($_SERVER), ':task'=>$row['id'], ':country'=>$country, ':url'=>$_SERVER["HTTP_REFERER"], ':key'=>$key));
 			}
 			else {
 				$page = $_GET['page'];
-                        	$query = ('INSERT INTO requests (requesterid, workerid, hitid, assignmentid, ip, mac, data, browser, taskid, country, url, pagesource) 
-                        	        VALUES (:requester, :worker, :hit, :assignment, :ip, "", :data, "", :task, :country, :url, :page)');
+                        	$query = ('INSERT INTO requests (requesterid, workerid, hitid, assignmentid, ip, mac, data, browser, taskid, country, url, pagesource, authkey) 
+                        	        VALUES (:requester, :worker, :hit, :assignment, :ip, "", :data, "", :task, :country, :url, :page, :key)');
                         	$sth = $dbh->prepare($query);
 
                         	$sth->execute(array(':requester'=>$requester, ':worker'=>$worker, ':hit'=>$hit, ':assignment'=>$assignment, ':ip'=>$_SERVER['REMOTE_ADDR'],
-                                	':data'=>serialize($_SERVER), ':task'=>$row['id'], ':country'=>$country, ':url'=>$_SERVER["HTTP_REFERER"], ':page'=>$page));
+                                	':data'=>serialize($_SERVER), ':task'=>$row['id'], ':country'=>$country, ':url'=>$_SERVER["HTTP_REFERER"], ':page'=>$page, ':key'=>$key));
 			}
 
 			// load the source file
