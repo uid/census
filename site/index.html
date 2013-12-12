@@ -26,9 +26,19 @@
 }
 
 </style>
+
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+<script type="text/javascript">
+
+/*
+$(document).ready( function() {
+	alert("here");
+});
+*/
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
@@ -55,7 +65,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("http://localhost/census/site/data.tsv", type, function(error, data) {
+d3.tsv("data.tsv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.letter; }));
   y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
@@ -91,3 +101,4 @@ function type(d) {
 }
 
 </script>
+
