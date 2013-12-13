@@ -1,5 +1,11 @@
 
 <!DOCTYPE html>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<script src="index.css"></script>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,7 +21,8 @@
     <link href="dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+    <!--<link href="dist/css/jumbotron.css" rel="stylesheet"> -->
+
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -81,8 +88,15 @@
 
       <hr>
 
+      <script>
+      $(document).ready()
+      {
+        function graph("body", "data.tsv");
+      }
+      </script>
+
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Stanford HCI</p>
       </footer>
     </div> <!-- /container -->
 
@@ -91,6 +105,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/Users/maitreyeejoshi/repository/census/site/dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
   </body>
 </html>
