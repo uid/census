@@ -12,15 +12,16 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-<script type="text/javascript" src="graph.js"></script>
+<script type="text/javascript" src="graphAge.js"></script>
+<script type="text/javascript" src="graphEthnicity.js"></script>
+<script type="text/javascript" src="graphGender.js"></script>
 
 <script>
   $(document).ready()
   {
-    graph("#g1", "data.tsv");
-    graph("#g2", "data.tsv");
-    graph("#g3", "data.tsv");
-    graph("#g4", "data.tsv");
+    graphAge("#g1", "age.tsv");
+    graphEthnicity("#g2", "eth.tsv");
+    graphGender("#g3", "gend.tsv");
   }
 </script>
 

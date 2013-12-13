@@ -1,4 +1,5 @@
-function graph(domElement, fileName)
+// Plot the gender of workers
+function graphGender(domElement, fileName)
 {
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
@@ -19,7 +20,8 @@ function graph(domElement, fileName)
     .orient("left")
     .ticks(10, "");
 
-   svg = d3.select(domElement).append("svg")
+  //gendGraph = d3.select(domElement).append("gendGraph")
+  gendGraph = d3.select(domElement).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -29,12 +31,12 @@ function graph(domElement, fileName)
      x.domain(data.map(function(d) { return d.gender; }));
      y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
-  svg.append("g")
+  gendGraph.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
+  gendGraph.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
@@ -44,7 +46,7 @@ function graph(domElement, fileName)
       .style("text-anchor", "end")
       .text("Frequency");
 
-  svg.selectAll(".bar")
+  gendGraph.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
@@ -53,12 +55,13 @@ function graph(domElement, fileName)
       .attr("y", function(d) { return y(d.frequency); })
       .attr("height", function(d) { return height - y(d.frequency); });
 
-});
+  });
 
-function type(d) 
-{
-  d.frequency = +d.frequency;
-  return d;
+  function type(d) 
+  {
+    d.frequency = +d.frequency;
+    return d;
+  }
 }
-}
+
 
