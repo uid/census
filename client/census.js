@@ -94,7 +94,8 @@ if (typeof jQuery == 'undefined') {
 		if (census.DEBUG) {
 			var question = "<div><div>In metric tons, how much wood would a woodchuck chuck if a woodchuck could chuck Woody Allen?</div>" +
 				"<div><input type='text' name='woodchuck'></input></div></div>";
-			census._insertCensusQuestion(question, -1);
+			//REAL: census._insertCensusQuestion(questionDiv, question, -1);
+			census._insertCensusQuestion(questionDiv, question, -1);
 		} else {
 			// Get the task code from the Census database
 //alert(document.documentElement.innerHTML)
@@ -114,7 +115,7 @@ if (typeof jQuery == 'undefined') {
 					}
 					else {
 						// Once the task is retrieved, insert the question into the page
-						census._insertCensusQuestion(data['data'], data['request_id']);
+						census._insertCensusQuestion(questionDiv, data['data'], data['request_id']);
 					}
 				}, 
 				error: function(data) {
@@ -130,7 +131,7 @@ if (typeof jQuery == 'undefined') {
 	/**
  	 * Show the Census task below the existing base task.
  	 */
-	census._insertCensusQuestion = function(question, request_id) {
+	census._insertCensusQuestion = function(questionDiv, question, request_id) {
 		var css = "<style type='text/css'>.censusForm { border: 1px solid #BBBBBB; border-radius: 10px; margin-top: 20px; padding: 10px; font-family: Helvitica Neue, Helvetica, Arial, sans-serif; max-width: 800px; display: none; }  .censusTitle { font-size: 20pt; color: #8A1946; font-weight: 800; } .censusSubtitle { font-size: 10pt; color: darkGray; font-weight: 200; } .censusQuestion { margin-top: 20px; }  .censusSubmit { margin-top: 20px; } </style>";
 		var wrapped = $(css + "<form id='censusForm' name='censusForm' class='censusForm'>" +
 			"<input type='hidden' name='requestId' value='" + request_id + "'></input>" +
