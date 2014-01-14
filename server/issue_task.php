@@ -31,7 +31,9 @@ if( isset($_REQUEST['workerId']) && isset($_REQUEST['assignmentId']) && isset($_
 
 	// If the DB connection was made correctly...
 	if($dbh) {
-	  $sth = $dbh->prepare ("SELECT id,summary FROM `tasks` WHERE id NOT IN (SELECT taskid FROM requests WHERE workerId=:worker AND id IN (SELECT requestid FROM responses WHERE timestamp BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE())) AND id >= 8 AND id <= 11 ORDER BY RAND()");
+	  //$sth = $dbh->prepare ("SELECT id,summary FROM `tasks` WHERE id NOT IN (SELECT taskid FROM requests WHERE workerId=:worker AND id IN (SELECT requestid FROM responses WHERE timestamp BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE())) AND id >= 8 AND id <= 11 ORDER BY RAND()");
+	  // WSL (1/14/14) -- TEMP HACKED VERSION TO AVOID WORKER ERRORS (TODO: pending diagnosis and resolution)
+	  $sth = $dbh->prepare ("SELECT id,summary FROM `tasks` WHERE id NOT IN (SELECT taskid FROM requests WHERE workerId=:worker AND id IN (SELECT requestid FROM responses WHERE timestamp BETWEEN SYSDATE() - INTERVAL 30 DAY AND SYSDATE())) AND id >= 8 AND id <= 11 and id <> 10 ORDER BY RAND()");
 		$sth->execute(array(':worker'=>$worker));
 			$row = $sth->fetch(PDO::FETCH_ASSOC);
 
