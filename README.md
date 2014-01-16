@@ -23,7 +23,7 @@ answering your questions are aggregated and provided for you to view through our
 	* Call `census.submit( '#questionDiv', '#taskForm', 'unique_key' );` when your task is ready to submit
 		* `#questionDiv` is the empty `<div>` where the census question will be posted 
 	 	* `#taskForm` is your `<form>` element for your HIT --- whatever you want submitted to MTurk.
-	 	* `unique_key` is the secret key that Census gives you, and that you can use to find the census results for your HIT later (COMING SOON)
+	 	* `unique_key` is the secret key that Census gives you, and that you can use to find the census results for your HIT later -- To create a unique key, go to: `census.stanford.edu/server/getstarted/newKey.php`
 	* The following is demo code that you can use in your HIT. Only `census.submit()` is required, but the rest may be helpful. This code intercepts the original form submission, disables the original form submission button, and calls `census.submit()` to retrieve a Census task, display it and then submit the HIT:
 
 
@@ -34,7 +34,7 @@ $(document).ready(function()  // Called when the HIT is loaded
 	{
     		event.preventDefault();  // Prevents default response of submitting the form
     		$('#submitBtn').prop('disabled', 'true');  // Disables original submit button so the worker doesn't click it again
-    		census.submit( '#questionDiv', '#taskForm' );  // Summon Census! Requests a task from the census server, displays it, and then submits your original task when the worker submits the Census task
+    		census.submit( '#questionDiv', '#taskForm', '#uniqueKey' );  // Summon Census! Requests a task from the census server, displays it, and then submits your original task when the worker submits the Census task
 	});
 });
 ```
